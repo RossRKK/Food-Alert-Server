@@ -1,7 +1,7 @@
 import java.net.ServerSocket;
 
 public class Main {
-	
+
 	private static ServerSocket ss;
 
 	public static void main(String args[]) {
@@ -14,7 +14,7 @@ public class Main {
 			// loop until the server is terminated
 			boolean done = false;
 			while (!done) {
-				//open a new thread to handle the request
+				// open a new thread to handle the request
 				(new Thread(new Request(ss.accept()))).start();
 			}
 			ss.close();

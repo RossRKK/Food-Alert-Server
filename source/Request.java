@@ -6,38 +6,37 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Request implements Runnable {
-	
 
 	private static final String url = "jdbc:mysql://localhost/food";
 	private static final String user = "root";
 
 	private Socket client;
-	
+
 	public Request(Socket client) {
 		this.client = client;
 	}
-	
+
 	@Override
 	public void run() {
 		try {
 			// create the input and output streams
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			PrintWriter out = new PrintWriter(client.getOutputStream());
-			
-			//send the client our headers
+
+			// send the client our headers
 			headers(out);
-	
+
 			// load in the header data
 			ArrayList<String> lines = readHeaders(in);
-	
+
 			String ean = getEan(lines);
-	
+
 			String method = getMethod(lines);
-			
-			//declare a new database manager
+
+			// declare a new database manager
 			DatabaseManager dbm = new DatabaseManager(url, user, "DoctorWh0!");
-	
-			if (method.equalsIgnoreCase("get")) {				
+
+			if (method.equalsIgnoreCase("get")) {
 				// send the response to the client
 				out.print(dbm.get(ean) + "\r\n");
 				System.out.println("Returned data on: " + ean);
@@ -48,13 +47,11 @@ public class Request implements Runnable {
 					lines.add(line);
 				}
 				// really this should probably parsing some json
-				//int data = Integer.parseInt(lines.get(lines.size() - 1));
 				int[] data = JSONify.fromJSON(lines.get(lines.size() - 1));
-				
+
 				boolean exists = dbm.exists(ean);
-				
-				//update the row if it already exists
-				//TODO this doesn't work properly
+
+				// update the row if it already exists
 				if (exists) {
 					dbm.update(ean, data);
 					System.out.println("Set " + ean + " to " + data);
@@ -72,17 +69,17 @@ public class Request implements Runnable {
 		}
 
 	}
-	
+
 	public static void headers(PrintWriter out) {
 		// Send the headers
 		out.print("HTTP/1.1 200 \r\n"); // Version & status code
-		out.print("Content-Type: text/JSON\r\n"); // The type of data
+		out.print("Content-Type: application/JSON\r\n"); // The type of data
 		out.print("Connection: close\r\n"); // Will close stream
 		out.print("\r\n"); // End of headers
 	}
-	
+
 	public static ArrayList<String> readHeaders(BufferedReader in) throws IOException {
-		//read the headers the client sends into an arraylist
+		// read the headers the client sends into an arraylist
 		ArrayList<String> lines = new ArrayList<String>();
 		String line;
 		while ((line = in.readLine()) != null) {
@@ -91,14 +88,14 @@ public class Request implements Runnable {
 			}
 			lines.add(line);
 		}
-		
+
 		return lines;
 	}
-	
+
 	public static String getMethod(ArrayList<String> lines) {
 		return lines.get(0).substring(0, lines.get(0).indexOf(' '));
 	}
-	
+
 	public static String getEan(ArrayList<String> lines) {
 		// get the ean out of the request
 		int index1 = lines.get(0).indexOf('/') + 1;
