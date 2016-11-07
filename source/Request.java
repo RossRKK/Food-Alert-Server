@@ -54,7 +54,7 @@ public class Request implements Runnable {
 				boolean exists = dbm.exists(ean);
 				
 				//update the row if it already exists
-				//else add it
+				//TODO this doesn't work properly
 				if (exists) {
 					dbm.update(ean, data);
 					System.out.println("Added " + ean + " and set to " + data);

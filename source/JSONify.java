@@ -44,12 +44,13 @@ public class JSONify {
 		//loop through each field
 		for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {
 			//get the substring of the json that is relevant
-			int index1 = json.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length() + 2;
-			String subStr = json.substring(index1, index1+2);
-			//remove the extra space " 1" if it isn't negative
-			if (!subStr.contains("-")) {
-				subStr = subStr.substring(0, 1);
+			
+			int index = json.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length() + 3;
+			String subStr = json.substring(index, index + 1);
+			if (subStr.contains("-")) {
+				subStr = json.substring(index, index + 2);
 			}
+			System.out.println(subStr);
 			//parse the string to an integer
 			data[i] = Integer.parseInt(subStr);
 		}
