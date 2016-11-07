@@ -46,7 +46,9 @@ public class DatabaseManager {
 				command += ", ";
 			}
 		}
+		command += ")";
 		//set up the prepared statement
+		System.out.println(command);
 		PreparedStatement stmt = con.prepareStatement(command);
 		stmt.setString(1, ean);
 		//fill the statement with values

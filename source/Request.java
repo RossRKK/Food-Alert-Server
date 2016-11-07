@@ -57,10 +57,10 @@ public class Request implements Runnable {
 				//TODO this doesn't work properly
 				if (exists) {
 					dbm.update(ean, data);
-					System.out.println("Added " + ean + " and set to " + data);
+					System.out.println("Set " + ean + " to " + data);
 				} else {
 					dbm.add(ean, data);
-					System.out.println("Set " + ean + " to " + data);
+					System.out.println("Added " + ean + " and set to " + data);
 				}
 			}
 			// disconnect
