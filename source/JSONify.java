@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class JSONify {
 
-	private static ArrayList<Integer> data = new ArrayList<Integer>();
+	//private static ArrayList<Integer> data = new ArrayList<Integer>();
 
 	// produce json from a result set
 	public static String toJSON(ResultSet rs) throws SQLException {
+		ArrayList<Integer> data = new ArrayList<Integer>();
 		// read in all of the data from the mySQL database
 		while (rs.next()) {
 			for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {

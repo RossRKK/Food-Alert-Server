@@ -4,10 +4,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
-
 public class Request implements Runnable {
 
-	private static final String url = "jdbc:mysql://localhost/food";
+	private static final String url = "jdbc:mysql://localhost/food?autoReconnect=true&useSSL=false";
 	private static final String user = "root";
 
 	private Socket client;
