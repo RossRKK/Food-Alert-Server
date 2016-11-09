@@ -1,9 +1,12 @@
+package server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+
+import server.Record;
 public class Request implements Runnable {
 
 	private static final String url = "jdbc:mysql://localhost/food?autoReconnect=true&useSSL=false";
@@ -48,14 +51,14 @@ public class Request implements Runnable {
 				// really this should probably parsing some json
 				int[] data = JSONify.fromJSON(lines.get(lines.size() - 1));
 
-				boolean exists = dbm.exists(ean);
+				boolean exists = dbm.exists(ean) || Record.hasRecord(ean);
 
 				// update the row if it already exists
 				if (exists) {
-					dbm.update(ean, data);
+					Record.update(ean, data, dbm);
 					System.out.println("Set " + ean + " to " + data);
 				} else {
-					dbm.add(ean, data);
+					Record.add(ean, data);
 					System.out.println("Added " + ean + " and set to " + data);
 				}
 			}
