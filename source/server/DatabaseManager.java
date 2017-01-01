@@ -1,5 +1,4 @@
 package server;
-import java.lang.ref.Reference;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -8,13 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DatabaseManager {
-	public static final String[] fieldNames = { "containsNuts", "containsDairy" };
-	public static final String[] fieldBases = { "nuts", "dairy" };
+	public static String[] fieldNames;
+	public static String[] fieldBases;
 	
-	public static final int CONTAINS = 2;
-	public static final int TRACE = 1;
-	public static final int NONE = 0;
-	public static final int UNKNOWN = -1;
+	public static int CONTAINS;
+	public static int TRACE;
+	public static int NONE;
+	public static int UNKNOWN;
 
 	private Connection con;
 	private String url;
@@ -193,5 +192,16 @@ public class DatabaseManager {
 		statement.close();
 		rs.close();
 		return ans;
+	}
+
+	public static void setFieldBases(String[] fieldBases) {
+		DatabaseManager.fieldBases = fieldBases;
+		String[] names = new String[fieldBases.length];
+		for (int i = 0; i < fieldBases.length; i++) {
+			String cur = fieldBases[i];
+			cur = cur.substring(0, 1).toUpperCase() + cur.substring(1);
+			names[i] = cur;
+		}
+		fieldNames = names;
 	}
 }

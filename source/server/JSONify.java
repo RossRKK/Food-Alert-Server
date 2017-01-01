@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class JSONify {
-	public static int minSep = 1;
+	public static int minSep;
 
 	//private static ArrayList<Integer> data = new ArrayList<Integer>();
 

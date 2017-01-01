@@ -4,11 +4,13 @@ import java.net.ServerSocket;
 public class Main {
 
 	private static ServerSocket ss;
+	
+	private static int port = 8080;
 
 	public static void main(String args[]) {
 		try {
-			// Get the port to listen on
-			int port = Integer.parseInt(args[0]);
+			ConfigLoader.loadConfig();
+			
 			// Create a ServerSocket to listen on that port.
 			ss = new ServerSocket(port);
 
@@ -22,5 +24,9 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void setPort(int p) {
+		port = p;
 	}
 }

@@ -5,12 +5,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
-
-import server.Record;
 public class Request implements Runnable {
 
-	private static final String url = "jdbc:mysql://localhost/food?autoReconnect=true&useSSL=false";
-	private static final String user = "root";
+	private static String url;
+	private static String user;
+	private static String pass;
 
 	private Socket client;
 
@@ -36,7 +35,7 @@ public class Request implements Runnable {
 			String method = getMethod(lines);
 
 			// declare a new database manager
-			DatabaseManager dbm = new DatabaseManager(url, user, "DoctorWh0!");
+			DatabaseManager dbm = new DatabaseManager(url, user, pass);
 
 			if (method.equalsIgnoreCase("get")) {
 				// send the response to the client
@@ -106,6 +105,18 @@ public class Request implements Runnable {
 		int index1 = lines.get(0).indexOf('/') + 1;
 		int index2 = lines.get(0).lastIndexOf(' ');
 		return lines.get(0).substring(index1, index2);
+	}
+
+	public static void setUrl(String url) {
+		Request.url = url;
+	}
+
+	public static void setUser(String user) {
+		Request.user = user;
+	}
+
+	public static void setPass(String pass) {
+		Request.pass = pass;
 	}
 
 }
