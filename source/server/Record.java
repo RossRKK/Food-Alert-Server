@@ -25,7 +25,13 @@ public class Record {
 		concurs++;
 	}
 	
-	//this checks whether enough users agree to actually add the data to the database
+	/**
+	 * Check whether enough users agree to actually add the data to the database
+	 * @param ean The barcode number of the item in question
+	 * @param data The newly submitted details
+	 * @param dbm The database manger that is being used
+	 * @throws SQLException
+	 */
 	public static void update(String ean, int[] data, DatabaseManager dbm) throws SQLException {
 		//add this record if we don't have it
 		if (!hasRecord(ean)) {

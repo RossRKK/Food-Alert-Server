@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class JSONify {
+	public static int minSep = 1;
 
 	//private static ArrayList<Integer> data = new ArrayList<Integer>();
 
@@ -12,8 +13,28 @@ public class JSONify {
 		ArrayList<Integer> data = new ArrayList<Integer>();
 		// read in all of the data from the mySQL database
 		while (rs.next()) {
-			for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {
-				data.add(rs.getInt(DatabaseManager.fieldNames[i]));
+			for (int i = 0; i < DatabaseManager.fieldBases.length; i++) {
+				int contains = rs.getInt(DatabaseManager.fieldBases[i] + "C");
+				int trace = rs.getInt(DatabaseManager.fieldBases[i] + "T");
+				int none = rs.getInt(DatabaseManager.fieldBases[i] + "N");
+				
+				int code = DatabaseManager.UNKNOWN;
+				//determine which code to use
+				if (contains - trace > minSep) {
+					code = DatabaseManager.CONTAINS;
+				} else if (contains - none > minSep) {
+					code = DatabaseManager.CONTAINS;
+				} else if (trace - contains > minSep) {
+					code = DatabaseManager.TRACE;
+				} else if (trace - none > minSep) {
+					code = DatabaseManager.TRACE;
+				} else if (none - contains > minSep) {
+					code = DatabaseManager.NONE;
+				} else if (none - trace > minSep) {
+					code = DatabaseManager.NONE;
+				}
+				
+				data.add(code);
 			}
 		}
 

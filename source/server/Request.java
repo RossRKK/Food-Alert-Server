@@ -40,7 +40,7 @@ public class Request implements Runnable {
 
 			if (method.equalsIgnoreCase("get")) {
 				// send the response to the client
-				out.print(dbm.get(ean) + "\r\n");
+				out.print(dbm.getJSON(ean) + "\r\n");
 				System.out.println("Returned data on: " + ean);
 			} else if (method.equalsIgnoreCase("post")) {
 				// load in each new line
@@ -51,19 +51,22 @@ public class Request implements Runnable {
 				// really this should probably parsing some json
 				int[] data = JSONify.fromJSON(lines.get(lines.size() - 1));
 
-				boolean exists = dbm.exists(ean) || Record.hasRecord(ean);
+				boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
 
 				// update the row if it already exists
 				if (exists) {
-					Record.update(ean, data, dbm);
+					//Record.update(ean, data, dbm);
+					dbm.update(ean, data);
 					System.out.println("Set " + ean + " to " + data);
 				} else {
-					Record.add(ean, data);
+					//Record.add(ean, data);
+					dbm.add(ean, data);
 					System.out.println("Added " + ean + " and set to " + data);
 				}
 			}
 			// disconnect
 			out.close();
+			out.flush();
 			in.close();
 			client.close();
 		} catch (Exception e) {
