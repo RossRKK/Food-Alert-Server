@@ -46,7 +46,7 @@ public class ConfigLoader {
 	}
 	
 	private static void setValues() {
-		int port = Integer.parseInt(System.getenv("$PORT"));
+		int port = Integer.parseInt(System.getenv("PORT"));
 		System.out.println(port);
 		Main.setPort(port);
 		
