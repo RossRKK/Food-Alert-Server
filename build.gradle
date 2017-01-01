@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName = 'server.Main'
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    baseName = 'Food-Alert-Server'
+    version =  '0.1.0'
+
+    manifest {
+    attributes(
+      'Main-Class': 'server.Main'
+    )
+  }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile "mysql:mysql-connector-java:5.1.6"
+}
