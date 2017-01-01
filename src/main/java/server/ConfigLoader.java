@@ -46,7 +46,8 @@ public class ConfigLoader {
 	}
 	
 	private static void setValues() {
-		int port = Integer.parseInt(portStr);
+		int port = System.getenv("$PORT");
+		System.out.println(port);
 		Main.setPort(port);
 		
 		int minSep = Integer.parseInt(minSepStr);
