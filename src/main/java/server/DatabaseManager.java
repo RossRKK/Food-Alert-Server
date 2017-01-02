@@ -204,4 +204,53 @@ public class DatabaseManager {
 		}
 		fieldNames = names;
 	}
+	
+	/**
+	 * Determines whether a table exists in the database
+	 * @param tableName The name of the table to check for
+	 * @param dbName The name of the db to check for it in
+	 * @return Whether the table exists
+	 * @throws SQLException
+	 */
+	public boolean tableExists(String tableName, String dbName) throws SQLException {
+		/*SELECT table_name
+		FROM information_schema.tables
+		WHERE table_schema = 'databasename'
+		AND table_name = 'testtable';*/
+		PreparedStatement statement = con.prepareStatement("select ? from information_schema.tables where table_schema = ?;");
+		statement.setString(1, tableName);
+		statement.setString(2,  dbName);
+		ResultSet rs = statement.executeQuery();
+		boolean ans = rs.next();
+		statement.close();
+		rs.close();
+		return ans;
+	}
+	
+	/**
+	 * Create a new table in the databasse
+	 * @param tableName The name of the table
+	 * @param fieldNames The names of the fields
+	 * @param fieldTypes The SQL types of the fields
+	 * @throws SQLException 
+	 */
+	public void createTable(String tableName, String[] fieldNames, String[] fieldTypes) throws SQLException {
+		//create table table_name (fieldName type, ...);
+		String command = "create table " + tableName +" (";
+		
+		for (int i = 0; i < fieldNames.length; i++) {
+			command += fieldNames[i] + " " + fieldTypes[i];
+			if (i < fieldNames.length - 1) {
+				command += ", ";
+			}
+		}
+		
+		command += ");";
+		PreparedStatement statement = con.prepareStatement(command);
+		
+		statement.execute();
+		//ResultSet rs = statement.executeQuery();
+		statement.close();
+		//rs.close();
+	}
 }
