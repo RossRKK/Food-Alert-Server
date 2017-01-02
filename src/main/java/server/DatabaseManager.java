@@ -39,7 +39,7 @@ public class DatabaseManager {
 	public String getJSON(String ean) throws SQLException {
 		// get the results of a query for the ean using prepared
 		// statements to make injection impossible
-		PreparedStatement stmt = con.prepareStatement("select * from food where ean = ?");
+		PreparedStatement stmt = con.prepareStatement("select * " + ConfigLoader.getFoodTableName() + " food where ean = ?");
 		stmt.setString(1, ean);
 		ResultSet rs = stmt.executeQuery();
 
@@ -60,7 +60,7 @@ public class DatabaseManager {
 	public int getVotes(String ean, String field) throws SQLException {
 		// get the results of a query for the ean using prepared
 		// statements to make injection impossible
-		PreparedStatement stmt = con.prepareStatement("select " + field + " from food where ean = ?");
+		PreparedStatement stmt = con.prepareStatement("select " + field + " from " + ConfigLoader.getFoodTableName() + " where ean = ?");
 		stmt.setString(1, ean);
 		ResultSet rs = stmt.executeQuery();
 
@@ -83,7 +83,7 @@ public class DatabaseManager {
 		// insert into food (ean, containsNuts) values (?, ?)
 		// generate the correct prepared statement
 		//"insert into food (ean, fieldName1, fieldName2, ...) values (?, ?, ?, ...)
-		String command = "insert into food (ean, ";
+		String command = "insert into " + ConfigLoader.getFoodTableName() + " (ean, ";
 		for (int i = 0; i < data.length; i++) {
 			//generate the correct field name
 			command += fieldBases[i] + "C, " + fieldBases[i] + "T, " + fieldBases[i] + "N";
@@ -137,7 +137,7 @@ public class DatabaseManager {
 	public void update(String ean, int data[]) throws SQLException, ClassNotFoundException {
 		// update food SET containsNuts = ? WHERE ean = ?
 		// generate the correct prepared statement
-		String command = "update food set ";
+		String command = "update " + ConfigLoader.getFoodTableName() + " set ";
 		for (int i = 0; i < data.length; i++) {
 			if (data[i] != UNKNOWN) {
 				command += fieldBases[i] + getExt(data[i]) + " = ?";
@@ -185,7 +185,7 @@ public class DatabaseManager {
 	 */
 	public boolean exists(String ean) throws SQLException {
 		// run a query to see if the element already exists
-		PreparedStatement statement = con.prepareStatement("select 1 from food where ean = ?");
+		PreparedStatement statement = con.prepareStatement("select 1 from " + ConfigLoader.getFoodTableName() +" where ean = ?");
 		statement.setString(1, ean);
 		ResultSet rs = statement.executeQuery();
 		boolean ans = rs.next();
