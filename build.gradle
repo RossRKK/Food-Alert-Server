@@ -22,5 +22,15 @@ jar {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+repositories {
+   flatDir {
+       dirs 'libs'
+   }
+}
+
+dependencies {
+    compile name : 'mysql-connector-java-5.1.40-bin.jar'
+}
+
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
