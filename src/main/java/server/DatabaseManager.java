@@ -39,8 +39,7 @@ public class DatabaseManager {
 	public String getJSON(String ean) throws SQLException {
 		// get the results of a query for the ean using prepared
 		// statements to make injection impossible
-		System.out.println("select * from " + ConfigLoader.getFoodTableName() + " where ean = ?");
-		PreparedStatement stmt = con.prepareStatement("select * " + ConfigLoader.getFoodTableName() + " where ean = ?");
+		PreparedStatement stmt = con.prepareStatement("select * from " + ConfigLoader.getFoodTableName() + " where ean = ?");
 		stmt.setString(1, ean);
 		ResultSet rs = stmt.executeQuery();
 
