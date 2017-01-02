@@ -23,13 +23,10 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-   flatDir {
-       dirs 'libs'
-   }
+   mavenCentral()
 }
-
 dependencies {
-    compile name : 'mysql-connector-java-5.1.40-bin.jar'
+   compile 'mysql:mysql-connector-java:5.1.6'
 }
 
 task stage(dependsOn: ['build', 'clean'])
