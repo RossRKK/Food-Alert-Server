@@ -101,6 +101,7 @@ public class Request implements Runnable {
 	}
 
 	public static String getEan(ArrayList<String> lines) {
+		System.out.println(lines.get(0));
 		// get the ean out of the request
 		int index1 = lines.get(0).indexOf('/') + 1;
 		int index2 = lines.get(0).lastIndexOf(' ');
