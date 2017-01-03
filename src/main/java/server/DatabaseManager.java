@@ -112,7 +112,6 @@ public class DatabaseManager {
 		}
 		command += ")";
 		// set up the prepared statement
-		System.out.println(command);
 		PreparedStatement stmt = con.prepareStatement(command);
 		stmt.setString(1, ean);
 		// fill the statement with values
@@ -151,7 +150,6 @@ public class DatabaseManager {
 		
 		for (int i = 0; i < votes.length; i++) {
 			votes[i] = new DatabaseManager(url, user, pass).getVotes(ean, DatabaseManager.fieldBases[i] + getExt(data[i]));
-			System.out.println(votes[i]);
 		}
 		// set up the prepared statement
 		PreparedStatement stmt = con.prepareStatement(command);
@@ -200,7 +198,7 @@ public class DatabaseManager {
 		for (int i = 0; i < fieldBases.length; i++) {
 			String cur = fieldBases[i];
 			cur = cur.substring(0, 1).toUpperCase() + cur.substring(1);
-			names[i] = cur;
+			names[i] = "contains" + cur;
 		}
 		fieldNames = names;
 	}
