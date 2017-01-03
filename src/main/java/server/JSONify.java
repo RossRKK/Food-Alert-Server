@@ -76,6 +76,7 @@ public class JSONify {
 			// parse the string to an integer
 			data[i] = Integer.parseInt(subStr);
 		}
+		
 		return data;
 	}
 }
