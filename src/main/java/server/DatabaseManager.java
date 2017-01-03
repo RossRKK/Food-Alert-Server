@@ -94,6 +94,7 @@ public class DatabaseManager {
 		}
 		command += ") values (?, ";
 		for (int i = 0; i < data.length; i++) {
+			System.out.println(data[i]);
 			//put the vote in the write place
 			if (data[i] == CONTAINS) {
 				command += "?, 0, 0";
