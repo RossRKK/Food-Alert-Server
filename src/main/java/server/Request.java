@@ -41,6 +41,7 @@ public class Request implements Runnable {
 				int[] data = JSONify.decode(extension);
 				System.out.println(data);
 				if (data != null) {
+					System.out.println("This has data to post");
 					boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
 					// update the row if it already exists
 					if (exists) {

@@ -141,6 +141,7 @@ public class JSONify {
 			data[i] = curData;
 			sc.close();
 		}*/
+		}
 		
 		return data;
 	}
