@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 public class Request implements Runnable {
 
 	private static String url;
@@ -42,6 +43,7 @@ public class Request implements Runnable {
 				System.out.println("Returned data on: " + ean);
 			} else if (method.equalsIgnoreCase("post")) {
 				postHeaders(out);
+				out.print("Updated\r\n");
 				// load in each new line
 				String line;
 				while ((line = in.readLine()) != null) {
@@ -79,7 +81,8 @@ public class Request implements Runnable {
 	private void postHeaders(PrintWriter out) {
 		// Send the headers
 		out.print("HTTP/1.1 201 Created\r\n"); // Version & status code
-		out.print("Content-Type: application/JSON\r\n"); // The type of data
+		out.print("Content-Type: text/plain\r\n"); // The type of data
+		out.print("Date: " + new Date().toString() + "\r\n"); // The type of data
 		out.print("Connection: close\r\n"); // Will close stream
 		out.print("\r\n"); // End of headers
 	}
@@ -88,6 +91,7 @@ public class Request implements Runnable {
 		// Send the headers
 		out.print("HTTP/1.1 200 OK\r\n"); // Version & status code
 		out.print("Content-Type: application/JSON\r\n"); // The type of data
+		out.print("Date: " + new Date().toString() + "\r\n"); // The type of data
 		out.print("Connection: close\r\n"); // Will close stream
 		out.print("\r\n"); // End of headers
 	}
