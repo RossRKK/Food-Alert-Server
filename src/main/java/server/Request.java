@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 public class Request implements Runnable {
@@ -56,42 +55,11 @@ public class Request implements Runnable {
 						System.out.println("Added " + ean + " and set to " + data);
 					}
 				}
-				
+			} else {
 				// send the response to the client
 				out.print(dbm.getJSON(ean) + "\r\n");
 				System.out.println("Returned data on: " + ean);
-			} /*else if (method.equalsIgnoreCase("post")) {
-				System.out.println("This is a post request");
-				postHeaders(out);
-				
-				out.print("Success\r\n\r\n");
-				// load in each new line
-				String line;
-				while ((line = in.readLine()) != null) {
-					lines.add(line);
-				}
-				// really this should probably parsing some json
-				System.out.println("Parsing JSON on line: " + lines.get(lines.size() - 1));
-				int[] data = JSONify.fromJSON(lines.get(lines.size() - 1));
-				boolean exists = false;
-				try {
-					exists = dbm.exists(ean);
-				} catch (SQLException e) {
-					System.out.println("Error determining existing");
-				}
-				// update the row if it already exists
-				if (exists) {
-					System.out.println("Attempting to update existing record");
-					//Record.update(ean, data, dbm);
-					dbm.update(ean, data);
-					System.out.println("Set " + ean + " to " + data);
-				} else {
-					System.out.println("Attempting to add new record");
-					//Record.add(ean, data);
-					dbm.add(ean, data);
-					System.out.println("Added " + ean + " and set to " + data);
-				}
-			}*/
+			}
 			// disconnect
 			out.close();
 			out.flush();
@@ -102,15 +70,6 @@ public class Request implements Runnable {
 		}
 
 	}
-
-	/*private void postHeaders(PrintWriter out) {
-		// Send the headers
-		out.print("HTTP/1.1 201 Created\r\n"); // Version & status code
-		out.print("Content-Type: text/plain\r\n"); // The type of data
-		out.print("Date: " + new Date().toString() + "\r\n"); // The type of data
-		out.print("Connection: close\r\n"); // Will close stream
-		out.print("\r\n"); // End of headers
-	}*/
 
 	public static void getHeaders(PrintWriter out) {
 		// Send the headers
