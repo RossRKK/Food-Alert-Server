@@ -118,12 +118,12 @@ public class JSONify {
 		for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {
 			// get the substring of the json that is relevant
 
-			/*int index = json.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length() + 2;
-			String subStr = json.substring(index, index + 1);
+			int index = extension.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length() + 1;
+			String subStr = extension.substring(index, index + 1);
 			if (subStr.contains("-")) {
-				subStr = json.substring(index, index + 2);
-			}*/
-			int index = extension.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length();
+				subStr = extension.substring(index, index + 2);
+			}
+			/*int index = extension.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length();
 			
 			String s = extension.substring(index, extension.indexOf("&", index));
 			
@@ -140,7 +140,7 @@ public class JSONify {
 			}
 			data[i] = curData;
 			sc.close();
-		}
+		}*/
 		
 		return data;
 	}
