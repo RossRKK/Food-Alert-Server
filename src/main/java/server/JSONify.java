@@ -53,8 +53,18 @@ public class JSONify {
 			}
 			out += "}";
 		} else {
-			// if there is no information just return "unknown"
-			out = "unknown";
+			//if the data is empty send unkown codes
+			out = "{";
+			// loop through each element and add it to the string
+			for (int j = 0; j < DatabaseManager.fieldNames.length; j++) {
+				// add the field name and data
+				out += "\"" + DatabaseManager.fieldNames[j] + "\": " + DatabaseManager.UNKNOWN;
+				// if there is another element add a comma
+				if (j < DatabaseManager.fieldNames.length - 1) {
+					out += ", ";
+				}
+			}
+			out += "}";
 		}
 		return out;
 	}
