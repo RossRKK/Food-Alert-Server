@@ -2,6 +2,7 @@ package server;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class JSONify {
@@ -90,7 +91,16 @@ public class JSONify {
 			
 			Scanner sc = new Scanner(s);
 			// parse the string to an integer
-			data[i] = sc.nextInt();
+			int curData = DatabaseManager.UNKNOWN;
+			while (sc.hasNext()) {
+				try {
+					curData = sc.nextInt();
+					break;
+				} catch (InputMismatchException e) {
+					
+				}
+			}
+			data[i] = curData;
 			sc.close();
 		}
 		
