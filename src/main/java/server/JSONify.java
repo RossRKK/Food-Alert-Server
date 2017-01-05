@@ -106,4 +106,42 @@ public class JSONify {
 		
 		return data;
 	}
+	
+	public static int[] decode(String extension) {
+		if (extension.indexOf("?") == -1) {
+			return null;
+		}
+		// declare an integer array with an element for each field
+		int[] data = new int[DatabaseManager.fieldNames.length];
+
+		// loop through each field
+		for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {
+			// get the substring of the json that is relevant
+
+			/*int index = json.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length() + 2;
+			String subStr = json.substring(index, index + 1);
+			if (subStr.contains("-")) {
+				subStr = json.substring(index, index + 2);
+			}*/
+			int index = extension.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length();
+			
+			String s = extension.substring(index, extension.indexOf("&", index));
+			
+			Scanner sc = new Scanner(s);
+			// parse the string to an integer
+			int curData = DatabaseManager.UNKNOWN;
+			while (sc.hasNext()) {
+				try {
+					curData = sc.nextInt();
+					break;
+				} catch (InputMismatchException e) {
+					
+				}
+			}
+			data[i] = curData;
+			sc.close();
+		}
+		
+		return data;
+	}
 }

@@ -29,7 +29,8 @@ public class Request implements Runnable {
 			// load in the header data
 			ArrayList<String> lines = readHeaders(in);
 
-			String ean = getEan(lines);
+			String extension = getExtension(lines);
+			String ean = getEan(extension);
 			String method = getMethod(lines);
 
 			// declare a new database manager
@@ -37,10 +38,27 @@ public class Request implements Runnable {
 
 			if (method.equalsIgnoreCase("get")) {
 				getHeaders(out);
+				int[] data = JSONify.decode(extension);
+				if (data != null) {
+					boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
+					// update the row if it already exists
+					if (exists) {
+						System.out.println("Attempting to update existing record");
+						//Record.update(ean, data, dbm);
+						dbm.update(ean, data);
+						System.out.println("Set " + ean + " to " + data);
+					} else {
+						System.out.println("Attempting to add new record");
+						//Record.add(ean, data);
+						dbm.add(ean, data);
+						System.out.println("Added " + ean + " and set to " + data);
+					}
+				}
+				
 				// send the response to the client
 				out.print(dbm.getJSON(ean) + "\r\n");
 				System.out.println("Returned data on: " + ean);
-			} else if (method.equalsIgnoreCase("post")) {
+			} /*else if (method.equalsIgnoreCase("post")) {
 				System.out.println("This is a post request");
 				postHeaders(out);
 				
@@ -55,7 +73,7 @@ public class Request implements Runnable {
 				int[] data = JSONify.fromJSON(lines.get(lines.size() - 1));
 				boolean exists = false;
 				try {
-					exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
+					exists = dbm.exists(ean);
 				} catch (SQLException e) {
 					System.out.println("Error determining existing");
 				}
@@ -71,7 +89,7 @@ public class Request implements Runnable {
 					dbm.add(ean, data);
 					System.out.println("Added " + ean + " and set to " + data);
 				}
-			}
+			}*/
 			// disconnect
 			out.close();
 			out.flush();
@@ -83,14 +101,14 @@ public class Request implements Runnable {
 
 	}
 
-	private void postHeaders(PrintWriter out) {
+	/*private void postHeaders(PrintWriter out) {
 		// Send the headers
 		out.print("HTTP/1.1 201 Created\r\n"); // Version & status code
 		out.print("Content-Type: text/plain\r\n"); // The type of data
 		out.print("Date: " + new Date().toString() + "\r\n"); // The type of data
 		out.print("Connection: close\r\n"); // Will close stream
 		out.print("\r\n"); // End of headers
-	}
+	}*/
 
 	public static void getHeaders(PrintWriter out) {
 		// Send the headers
@@ -119,11 +137,15 @@ public class Request implements Runnable {
 		return lines.get(0).substring(0, lines.get(0).indexOf(' '));
 	}
 
-	public static String getEan(ArrayList<String> lines) {
+	public static String getExtension(ArrayList<String> lines) {
 		// get the ean out of the request
 		int index1 = lines.get(0).indexOf('/') + 1;
 		int index2 = lines.get(0).lastIndexOf(' ');
 		return lines.get(0).substring(index1, index2);
+	}
+	
+	public static String getEan(String extension) {
+		return extension.substring(0, extension.indexOf('?'));
 	}
 
 	public static void setUrl(String url) {
