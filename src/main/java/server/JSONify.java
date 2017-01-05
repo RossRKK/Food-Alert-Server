@@ -2,6 +2,7 @@ package server;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class JSONify {
 	public static int minSep;
@@ -78,13 +79,19 @@ public class JSONify {
 		for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {
 			// get the substring of the json that is relevant
 
-			int index = json.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length() + 3;
+			/*int index = json.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length() + 2;
 			String subStr = json.substring(index, index + 1);
 			if (subStr.contains("-")) {
 				subStr = json.substring(index, index + 2);
-			}
+			}*/
+			int index = json.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length();
+			
+			String s = json.substring(index, json.indexOf(",", index));
+			
+			Scanner sc = new Scanner(s);
 			// parse the string to an integer
-			data[i] = Integer.parseInt(subStr);
+			data[i] = sc.nextInt();
+			sc.close();
 		}
 		
 		return data;
