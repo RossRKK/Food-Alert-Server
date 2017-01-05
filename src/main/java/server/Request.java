@@ -38,8 +38,8 @@ public class Request implements Runnable {
 
 			if (method.equalsIgnoreCase("get")) {
 				getHeaders(out);
+				System.out.println(extension);
 				int[] data = JSONify.decode(extension);
-				System.out.println(data);
 				if (data != null) {
 					System.out.println("This has data to post");
 					boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
