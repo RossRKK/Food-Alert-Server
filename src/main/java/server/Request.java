@@ -145,7 +145,11 @@ public class Request implements Runnable {
 	}
 	
 	public static String getEan(String extension) {
-		return extension.substring(0, extension.indexOf('?'));
+		try {
+			return extension.substring(0, extension.indexOf('?'));
+		} catch (StringIndexOutOfBoundsException e) {
+			return extension;
+		}
 	}
 
 	public static void setUrl(String url) {
