@@ -50,7 +50,7 @@ public class Request implements Runnable {
 				System.out.println("This is a POST request");
 				String line;
 				System.out.println("Reading data lines");
-				out.println("\n\r\n\r");
+				out.println("\r\n\r\n");
 				while ((line = in.readLine()) != null) {
 					System.out.println("Reading line; " + line);
 					lines.add(line);
@@ -90,7 +90,7 @@ public class Request implements Runnable {
 
 	public static void headers(PrintWriter out) {
 		// Send the headers
-		out.print("HTTP/1.1 200 \r\n"); // Version & status code
+		out.print("HTTP/1.1 200 OK\r\n"); // Version & status code
 		out.print("Content-Type: application/JSON\r\n"); // The type of data
 		out.print("Connection: close\r\n"); // Will close stream
 		out.print("\r\n"); // End of headers
