@@ -42,6 +42,8 @@ public class Request implements Runnable {
 			} else if (method.equalsIgnoreCase("post")) {
 				System.out.println("This is a post request");
 				postHeaders(out);
+				
+				out.print("Success\r\n\r\n");
 				// load in each new line
 				String line;
 				while ((line = in.readLine()) != null) {
