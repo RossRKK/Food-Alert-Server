@@ -50,6 +50,7 @@ public class Request implements Runnable {
 				System.out.println("This is a POST request");
 				String line;
 				System.out.println("Reading data lines");
+				out.println("\n\r\n\r");
 				while ((line = in.readLine()) != null) {
 					System.out.println("Reading line; " + line);
 					lines.add(line);
