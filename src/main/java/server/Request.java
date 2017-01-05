@@ -40,10 +40,12 @@ public class Request implements Runnable {
 				getHeaders(out);
 				// send the response to the client
 				out.print(dbm.getJSON(ean) + "\r\n");
+				out.close();
 				System.out.println("Returned data on: " + ean);
 			} else if (method.equalsIgnoreCase("post")) {
 				postHeaders(out);
 				out.print("Updated\r\n");
+				out.close();
 				// load in each new line
 				String line;
 				while ((line = in.readLine()) != null) {
@@ -68,7 +70,6 @@ public class Request implements Runnable {
 				}
 			}
 			// disconnect
-			out.close();
 			out.flush();
 			in.close();
 			client.close();
