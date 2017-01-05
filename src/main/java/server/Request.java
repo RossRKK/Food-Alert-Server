@@ -40,23 +40,20 @@ public class Request implements Runnable {
 				getHeaders(out);
 				// send the response to the client
 				out.print(dbm.getJSON(ean) + "\r\n");
-				out.flush();
 				System.out.println("Returned data on: " + ean);
 			} else if (method.equalsIgnoreCase("post")) {
+				System.out.println("This is a post request");
 				postHeaders(out);
-				out.print("Updated\r\n");
-				out.flush();
 				// load in each new line
 				String line;
 				while ((line = in.readLine()) != null) {
-					System.out.println("Adding line: " + line);
 					lines.add(line);
 				}
 				// really this should probably parsing some json
 				System.out.println("Parsing JSON on line: " + lines.get(lines.size() - 1));
 				int[] data = JSONify.fromJSON(lines.get(lines.size() - 1));
 				
-				//out.print(lines.get(lines.size() - 1) + "\r\n");
+				out.print(lines.get(lines.size() - 1) + "\r\n");
 				
 				boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
 				// update the row if it already exists
@@ -72,6 +69,7 @@ public class Request implements Runnable {
 			}
 			// disconnect
 			out.close();
+			out.flush();
 			in.close();
 			client.close();
 		} catch (Exception e) {
@@ -83,7 +81,7 @@ public class Request implements Runnable {
 	private void postHeaders(PrintWriter out) {
 		// Send the headers
 		out.print("HTTP/1.1 201 Created\r\n"); // Version & status code
-		out.print("Content-Type: text/plain\r\n"); // The type of data
+		out.print("Content-Type: text/p\r\n"); // The type of data
 		out.print("Date: " + new Date().toString() + "\r\n"); // The type of data
 		out.print("Connection: close\r\n"); // Will close stream
 		out.print("\r\n"); // End of headers
@@ -99,7 +97,6 @@ public class Request implements Runnable {
 	}
 
 	public static ArrayList<String> readHeaders(BufferedReader in) throws IOException {
-		System.out.println("Reading their headers");
 		// read the headers the client sends into an arraylist
 		ArrayList<String> lines = new ArrayList<String>();
 		String line;
@@ -110,7 +107,6 @@ public class Request implements Runnable {
 			}
 			lines.add(line);
 		}
-		System.out.println("Finished Reading Headers");
 
 		return lines;
 	}
