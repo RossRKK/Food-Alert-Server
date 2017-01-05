@@ -123,6 +123,7 @@ public class JSONify {
 			if (subStr.contains("-")) {
 				subStr = extension.substring(index, index + 2);
 			}
+			data[i] = Integer.parseInt(subStr);
 			/*int index = extension.indexOf(DatabaseManager.fieldNames[i]) + DatabaseManager.fieldNames[i].length();
 			
 			String s = extension.substring(index, extension.indexOf("&", index));
