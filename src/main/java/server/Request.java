@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 public class Request implements Runnable {
@@ -52,16 +53,20 @@ public class Request implements Runnable {
 				// really this should probably parsing some json
 				System.out.println("Parsing JSON on line: " + lines.get(lines.size() - 1));
 				int[] data = JSONify.fromJSON(lines.get(lines.size() - 1));
-				
-				out.print(lines.get(lines.size() - 1) + "\r\n");
-				
-				boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
+				boolean exists = false;
+				try {
+					exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
+				} catch (SQLException e) {
+					System.out.println("Error determining existing");
+				}
 				// update the row if it already exists
 				if (exists) {
+					System.out.println("Attempting to update existing record");
 					//Record.update(ean, data, dbm);
 					dbm.update(ean, data);
 					System.out.println("Set " + ean + " to " + data);
 				} else {
+					System.out.println("Attempting to add new record");
 					//Record.add(ean, data);
 					dbm.add(ean, data);
 					System.out.println("Added " + ean + " and set to " + data);
