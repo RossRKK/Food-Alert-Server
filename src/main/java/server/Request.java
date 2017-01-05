@@ -28,9 +28,7 @@ public class Request implements Runnable {
 			// load in the header data
 			ArrayList<String> lines = readHeaders(in);
 
-			System.out.println("Getting the EAN");
 			String ean = getEan(lines);
-			System.out.println("Getting the Method");
 			String method = getMethod(lines);
 
 			// declare a new database manager
@@ -81,7 +79,7 @@ public class Request implements Runnable {
 	private void postHeaders(PrintWriter out) {
 		// Send the headers
 		out.print("HTTP/1.1 201 Created\r\n"); // Version & status code
-		out.print("Content-Type: text/p\r\n"); // The type of data
+		out.print("Content-Type: text/plain\r\n"); // The type of data
 		out.print("Date: " + new Date().toString() + "\r\n"); // The type of data
 		out.print("Connection: close\r\n"); // Will close stream
 		out.print("\r\n"); // End of headers
@@ -101,7 +99,6 @@ public class Request implements Runnable {
 		ArrayList<String> lines = new ArrayList<String>();
 		String line;
 		while ((line = in.readLine()) != null) {
-			System.out.println("Reading line: " + line);
 			if (line.length() == 0) {
 				break;
 			}
