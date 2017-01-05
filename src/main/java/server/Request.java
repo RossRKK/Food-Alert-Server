@@ -15,7 +15,6 @@ public class Request implements Runnable {
 
 	public Request(Socket client) {
 		this.client = client;
-		System.out.println("New Request Created");
 	}
 
 	@Override
@@ -24,10 +23,6 @@ public class Request implements Runnable {
 			// create the input and output streams
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			PrintWriter out = new PrintWriter(client.getOutputStream());
-
-			// send the client our headers
-			headers(out);
-			System.out.println("Our headers sent");
 
 			// load in the header data
 			ArrayList<String> lines = readHeaders(in);
@@ -41,37 +36,30 @@ public class Request implements Runnable {
 			DatabaseManager dbm = new DatabaseManager(url, user, pass);
 
 			if (method.equalsIgnoreCase("get")) {
-				System.out.println("This is a GET request");
+				getHeaders(out);
 				// send the response to the client
 				out.print(dbm.getJSON(ean) + "\r\n");
 				System.out.println("Returned data on: " + ean);
 			} else if (method.equalsIgnoreCase("post")) {
+				postHeaders(out);
 				// load in each new line
-				System.out.println("This is a POST request");
 				String line;
-				System.out.println("Reading data lines");
-				out.println("Recieved\r\n\r\n");
 				while ((line = in.readLine()) != null) {
-					System.out.println("Reading line; " + line);
 					lines.add(line);
 				}
 				// really this should probably parsing some json
 				System.out.println("Parsing JSON on line: " + lines.get(lines.size() - 1));
 				int[] data = JSONify.fromJSON(lines.get(lines.size() - 1));
 				
-				for (int i = 0; i < data.length; i++) {
-					System.out.println("Data " + i + ": " + data[i]);
-				}
+				out.print(lines.get(lines.size() - 1) + "\r\n");
 				
 				boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
 				// update the row if it already exists
 				if (exists) {
-					System.out.println("Record already exists");
 					//Record.update(ean, data, dbm);
 					dbm.update(ean, data);
 					System.out.println("Set " + ean + " to " + data);
 				} else {
-					System.out.println("Record doesn't already exist");
 					//Record.add(ean, data);
 					dbm.add(ean, data);
 					System.out.println("Added " + ean + " and set to " + data);
@@ -88,7 +76,15 @@ public class Request implements Runnable {
 
 	}
 
-	public static void headers(PrintWriter out) {
+	private void postHeaders(PrintWriter out) {
+		// Send the headers
+		out.print("HTTP/1.1 201 Created\r\n"); // Version & status code
+		out.print("Content-Type: application/JSON\r\n"); // The type of data
+		out.print("Connection: close\r\n"); // Will close stream
+		out.print("\r\n"); // End of headers
+	}
+
+	public static void getHeaders(PrintWriter out) {
 		// Send the headers
 		out.print("HTTP/1.1 200 OK\r\n"); // Version & status code
 		out.print("Content-Type: application/JSON\r\n"); // The type of data
