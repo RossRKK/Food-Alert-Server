@@ -57,7 +57,11 @@ public class Request implements Runnable {
 				// really this should probably parsing some json
 				System.out.println("Parsing JSON on line: " + lines.get(lines.size() - 1));
 				int[] data = JSONify.fromJSON(lines.get(lines.size() - 1));
-
+				
+				for (int i = 0; i < data.length; i++) {
+					System.out.println("Data " + i + ": " + data[i]);
+				}
+				
 				boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
 				// update the row if it already exists
 				if (exists) {
