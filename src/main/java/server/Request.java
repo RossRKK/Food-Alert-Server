@@ -49,13 +49,14 @@ public class Request implements Runnable {
 				// load in each new line
 				String line;
 				while ((line = in.readLine()) != null) {
+					System.out.println("Adding line: " + line);
 					lines.add(line);
 				}
 				// really this should probably parsing some json
 				System.out.println("Parsing JSON on line: " + lines.get(lines.size() - 1));
 				int[] data = JSONify.fromJSON(lines.get(lines.size() - 1));
 				
-				out.print(lines.get(lines.size() - 1) + "\r\n");
+				//out.print(lines.get(lines.size() - 1) + "\r\n");
 				
 				boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
 				// update the row if it already exists
