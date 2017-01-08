@@ -48,6 +48,7 @@ public class DatabaseManager {
 		stmt.close();
 		rs.close();
 		con.close();
+		System.out.println("Printing JSON: " + ans);
 		return ans;
 	}
 	
@@ -79,11 +80,11 @@ public class DatabaseManager {
 	 * @param data The details of the item
 	 * @throws SQLException
 	 */
-	public void add(String ean, int data[]) throws SQLException {
+	public void add(String ean, String name, int data[]) throws SQLException {
 		// insert into food (ean, containsNuts) values (?, ?)
 		// generate the correct prepared statement
 		//"insert into food (ean, fieldName1, fieldName2, ...) values (?, ?, ?, ...)
-		String command = "insert into " + ConfigLoader.getFoodTableName() + " (ean, ";
+		String command = "insert into " + ConfigLoader.getFoodTableName() + " (ean, name, ";
 		for (int i = 0; i < data.length; i++) {
 			//generate the correct field name
 			command += fieldBases[i] + "C, " + fieldBases[i] + "T, " + fieldBases[i] + "N";
@@ -92,7 +93,7 @@ public class DatabaseManager {
 				command += ", ";
 			}
 		}
-		command += ") values (?, ";
+		command += ") values (?, ?, ";
 		for (int i = 0; i < data.length; i++) {
 			System.out.println(data[i]);
 			//put the vote in the write place
@@ -115,9 +116,10 @@ public class DatabaseManager {
 		// set up the prepared statement
 		PreparedStatement stmt = con.prepareStatement(command);
 		stmt.setString(1, ean);
+		stmt.setString(2, name);
 		// fill the statement with values
 		//the 2 is to account for the ean (so we start at the second element)
-		for (int i = 2; i < data.length + 2; i++) {
+		for (int i = 3; i < data.length + 3; i++) {
 			stmt.setInt(i, 1);
 		}
 		
@@ -134,10 +136,10 @@ public class DatabaseManager {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException 
 	 */
-	public void update(String ean, int data[]) throws SQLException, ClassNotFoundException {
+	public void update(String ean, String name, int data[]) throws SQLException, ClassNotFoundException {
 		// update food SET containsNuts = ? WHERE ean = ?
 		// generate the correct prepared statement
-		String command = "update " + ConfigLoader.getFoodTableName() + " set ";
+		String command = "update " + ConfigLoader.getFoodTableName() + " set name = ? ";
 		for (int i = 0; i < data.length; i++) {
 			if (data[i] != UNKNOWN) {
 				command += fieldBases[i] + getExt(data[i]) + " = ?";
@@ -155,8 +157,9 @@ public class DatabaseManager {
 		// set up the prepared statement
 		PreparedStatement stmt = con.prepareStatement(command);
 		// fill the statement with values
+		stmt.setString(1, name);
 		int i;
-		for (i = 1; i <= data.length; i++) {
+		for (i = 2; i <= data.length; i++) {
 			//get the current number of votes
 			stmt.setInt(i, votes[i -1] + 1);
 		}

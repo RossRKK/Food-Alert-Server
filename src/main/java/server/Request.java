@@ -38,27 +38,32 @@ public class Request implements Runnable {
 			if (method.equalsIgnoreCase("get")) {
 				getHeaders(out);
 				System.out.println(extension);
-				int[] data = JSONify.decode(extension);
-				if (data != null) {
+				
+				Record r = JSONify.decode(extension);
+				
+				if (r != null) {
+					int[] data = r.getData();
+					String name = r.getName();
+					
 					System.out.println("This has data to post");
 					boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
 					// update the row if it already exists
 					if (exists) {
 						System.out.println("Attempting to update existing record");
 						//Record.update(ean, data, dbm);
-						dbm.update(ean, data);
+						dbm.update(ean, name, data);
 						System.out.println("Set " + ean + " to " + data);
 					} else {
 						System.out.println("Attempting to add new record");
 						//Record.add(ean, data);
-						dbm.add(ean, data);
+						dbm.add(ean, name, data);
 						System.out.println("Added " + ean + " and set to " + data);
 					}
+				} else {
+					// send the response to the client
+					out.print(dbm.getJSON(ean) + "\r\n");
+					System.out.println("Returned data on: " + ean);
 				}
-			} else {
-				// send the response to the client
-				out.print(dbm.getJSON(ean) + "\r\n");
-				System.out.println("Returned data on: " + ean);
 			}
 			// disconnect
 			out.close();
