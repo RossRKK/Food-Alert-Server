@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigLoader {
-	private static String fieldNames;
 	private static String minSepStr;
 	private static String portStr;
 	
@@ -21,6 +20,9 @@ public class ConfigLoader {
 	
 	private static String foodTableName;
 	private static String dbName;
+	private static String tertiaryFieldNames;
+	private static String binaryFieldNames;
+	private static String continuousFieldNames;
  
 	public static void loadConfig() throws IOException {
 		Properties prop = new Properties();
@@ -35,7 +37,10 @@ public class ConfigLoader {
 		}
 		
 		// get the property value and print it out
-		fieldNames = prop.getProperty("fieldNames");
+		tertiaryFieldNames = prop.getProperty("tertiaryFieldNames");
+		binaryFieldNames = prop.getProperty("binaryFieldNames");
+		continuousFieldNames = prop.getProperty("continuousFieldNames");
+		
 		minSepStr = prop.getProperty("minVoteSeperation");
 		portStr = prop.getProperty("port");
 
@@ -73,14 +78,30 @@ public class ConfigLoader {
 		DatabaseManager.NONE = Integer.parseInt(noneStr);
 		DatabaseManager.UNKNOWN = Integer.parseInt(unknownStr);
 		
-		String[] bases = fieldNames.split(",");
+		String[] tertiaryBases;
+		if (tertiaryFieldNames.length() > 0) {
+			tertiaryBases = tertiaryFieldNames.split(",");
+		} else {
+			tertiaryBases = new String[0];
+		}
 		
-		DatabaseManager.setFieldBases(bases);
+		String[] binaryBases;
+		if (binaryFieldNames.length() > 0) {
+			binaryBases = binaryFieldNames.split(",");
+		} else {
+			binaryBases = new String[0];
+		}
+		
+		String[] continuousBases;
+		if (continuousFieldNames.length() > 0) {
+			continuousBases = continuousFieldNames.split(",");
+		} else {
+			continuousBases = new String[0];
+		}
+		
+		DatabaseManager.setFieldBases(tertiaryBases, binaryBases, continuousBases);
 	}
 
-	public static String getFieldNames() {
-		return fieldNames;
-	}
 
 	public static String getMinSepStr() {
 		return minSepStr;

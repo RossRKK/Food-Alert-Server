@@ -7,8 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DatabaseManager {
+	//fieldnames are added in this oreder:
+	//tertiary, binary, continuous
 	public static String[] fieldNames;
-	public static String[] fieldBases;
+	public static String[] tertiaryFieldNameBases;
+	public static String[] binaryFieldNameBases;
+	public static String[] continuousFieldNames;
+	public static String nameFieldName = "name";
 	
 	public static int CONTAINS;
 	public static int TRACE;
@@ -48,7 +53,6 @@ public class DatabaseManager {
 		stmt.close();
 		rs.close();
 		con.close();
-		System.out.println("Printing JSON: " + ans);
 		return ans;
 	}
 	
@@ -85,42 +89,109 @@ public class DatabaseManager {
 		// generate the correct prepared statement
 		//"insert into food (ean, fieldName1, fieldName2, ...) values (?, ?, ?, ...)
 		String command = "insert into " + ConfigLoader.getFoodTableName() + " (ean, name, ";
-		for (int i = 0; i < data.length; i++) {
+		int index = 0;
+		for (int i = 0; i < tertiaryFieldNameBases.length; i++) {
 			//generate the correct field name
-			command += fieldBases[i] + "C, " + fieldBases[i] + "T, " + fieldBases[i] + "N";
+			command += tertiaryFieldNameBases[i] + "C, " + tertiaryFieldNameBases[i] + "T, " + tertiaryFieldNameBases[i] + "N";
 			//command += fieldNames[i];
-			if (i < data.length - 1) {
+			if (index < data.length - 1) {
 				command += ", ";
 			}
+			index++;
 		}
+		
+		for (int i = 0; i < binaryFieldNameBases.length; i++) {
+			//generate the correct field name
+			command += binaryFieldNameBases[i] + "C, " + binaryFieldNameBases[i] + "N";
+			//command += fieldNames[i];
+			if (index < data.length - 1) {
+				command += ", ";
+			}
+			index++;
+		}
+		
+		for (int i = 0; i < continuousFieldNames.length; i++) {
+			//generate the correct field name
+			command += continuousFieldNames[i];
+			//command += fieldNames[i];
+			if (index < data.length - 1) {
+				command += ", ";
+			}
+			index++;
+		}
+		
 		command += ") values (?, ?, ";
-		for (int i = 0; i < data.length; i++) {
-			System.out.println(data[i]);
+		
+		index = 0;
+		for (int i = 0; i < tertiaryFieldNameBases.length; i++) {
+
 			//put the vote in the write place
-			if (data[i] == CONTAINS) {
+			if (data[index] == CONTAINS) {
 				command += "?, 0, 0";
-			} else if (data[i] == TRACE) {
+			} else if (data[index] == TRACE) {
 				command += "0, ?, 0";
-			} else if (data[i] == NONE) {
+			} else if (data[index] == NONE) {
 				command += "0, 0, ?";
 			} else {
-				command += "0, 0, 0";
+				command += "0, ?";
 			}
 			
 			//command += "?";
-			if (i < data.length - 1) {
+			if (index < data.length - 1) {
 				command += ", ";
 			}
+			index++;
 		}
+		
+		for (int i = 0; i < binaryFieldNameBases.length; i++) {
+			//put the vote in the write place
+			if (data[index] == CONTAINS) {
+				command += "?, 0";
+			} else if (data[index] == NONE) {
+				command += "0, ?";
+			} else {
+				command += "0, ?";
+			}
+			
+			//command += "?";
+			if (index < data.length - 1) {
+				command += ", ";
+			}
+			index++;
+		}
+		
+		for (int i = 0; i < continuousFieldNames.length; i++) {
+			command += "?";
+			//command += "?";
+			if (index < data.length - 1) {
+				command += ", ";
+			}
+			index++;
+		}
+		
+		
 		command += ")";
 		// set up the prepared statement
 		PreparedStatement stmt = con.prepareStatement(command);
 		stmt.setString(1, ean);
 		stmt.setString(2, name);
+		
+		int nonContinuousLength = tertiaryFieldNameBases.length + binaryFieldNameBases.length;
 		// fill the statement with values
-		//the 2 is to account for the ean (so we start at the second element)
-		for (int i = 3; i < data.length + 3; i++) {
-			stmt.setInt(i, 1);
+		//the 3 is to account for the ean (so we start at the second element)
+		index = 3;
+		for (int i = 0; i < nonContinuousLength; i++) {
+			int noVotes = 1;
+			if (data[i] == UNKNOWN) {
+				noVotes = 0;
+			}
+			stmt.setInt(index, noVotes);
+			index++;
+		}
+		
+		for (int i = nonContinuousLength; i < data.length; i++) {
+			stmt.setInt(index, data[i]);
+			index++;
 		}
 		
 		// execute the prepared statement
@@ -139,31 +210,71 @@ public class DatabaseManager {
 	public void update(String ean, String name, int data[]) throws SQLException, ClassNotFoundException {
 		// update food SET containsNuts = ? WHERE ean = ?
 		// generate the correct prepared statement
-		String command = "update " + ConfigLoader.getFoodTableName() + " set name = ? ";
-		for (int i = 0; i < data.length; i++) {
-			if (data[i] != UNKNOWN) {
-				command += fieldBases[i] + getExt(data[i]) + " = ?";
-				if (i < data.length - 1) {
-					command += ", ";
-				}
+		String command = "update " + ConfigLoader.getFoodTableName() + " set name = ?, ";
+		int index = 0;
+		//add tertiary fields
+		for (int i = 0; i < tertiaryFieldNameBases.length; i++) {
+			command += tertiaryFieldNameBases[i] + getExt(data[index]) + " = ?";
+			if (index < data.length - 1) {
+				command += ", ";
 			}
+			index ++;
 		}
-		command += " where ean = ?";
-		int[] votes = new int[data.length];
 		
-		for (int i = 0; i < votes.length; i++) {
-			votes[i] = new DatabaseManager(url, user, pass).getVotes(ean, DatabaseManager.fieldBases[i] + getExt(data[i]));
+		//add binary fields
+		for (int i = 0; i < binaryFieldNameBases.length; i++) {
+			command += binaryFieldNameBases[i] + getExt(data[index]) + " = ?";
+			if (index < data.length - 1) {
+				command += ", ";
+			}
+			index ++;
+		}
+		
+		//add contiuous fields
+		for (int i = 0; i < continuousFieldNames.length; i++) {
+			command += continuousFieldNames[i] + " = ?";
+			if (index < data.length - 1) {
+				command += ", ";
+			}
+			index ++;
+		}
+		
+		command += " where ean = ?";
+		int nonContinuousLength = tertiaryFieldNameBases.length + binaryFieldNameBases.length;
+		int[] votes = new int[nonContinuousLength];
+		
+		index = 0;
+		for (int i = 0; i < tertiaryFieldNameBases.length; i++) {
+			votes[index] = new DatabaseManager(url, user, pass).getVotes(ean, tertiaryFieldNameBases[i] + getExt(data[i]));
+			index++;
+		}
+		
+		for (int i = 0; i < binaryFieldNameBases.length; i++) {
+			votes[index] = new DatabaseManager(url, user, pass).getVotes(ean, binaryFieldNameBases[i] + getExt(data[i]));
+			index++;
 		}
 		// set up the prepared statement
 		PreparedStatement stmt = con.prepareStatement(command);
+
 		// fill the statement with values
 		stmt.setString(1, name);
-		int i;
-		for (i = 2; i <= data.length; i++) {
+		index = 2;
+		//add binary and tertiary votes
+		for (int i = 0; i < nonContinuousLength; i++) {
+			int noVotes = 1;
+			if (data[i] == UNKNOWN) {
+				noVotes = 0;
+			}
 			//get the current number of votes
-			stmt.setInt(i, votes[i -1] + 1);
+			stmt.setInt(index, votes[i] + noVotes);
+			index++;
 		}
-		stmt.setString(i, ean);
+		//add continuous data
+		for (int i = 0; i < continuousFieldNames.length; i++) {
+			stmt.setInt(index, data[i]);
+			index++;
+		}
+		stmt.setString(index, ean);
 		// execute the prepared statement
 		stmt.executeUpdate();
 		stmt.close();
@@ -196,14 +307,34 @@ public class DatabaseManager {
 		return ans;
 	}
 
-	public static void setFieldBases(String[] fieldBases) {
-		DatabaseManager.fieldBases = fieldBases;
-		String[] names = new String[fieldBases.length];
-		for (int i = 0; i < fieldBases.length; i++) {
-			String cur = fieldBases[i];
+	public static void setFieldBases(String[] tertiaryFieldBases, String[] binaryFieldBases, String[] contiuousFieldBases) {
+		tertiaryFieldNameBases = tertiaryFieldBases;
+		binaryFieldNameBases = binaryFieldBases;
+		continuousFieldNames = contiuousFieldBases;
+		String[] names = new String[tertiaryFieldNameBases.length + binaryFieldNameBases.length + continuousFieldNames.length];
+		int index = 0;
+		//add tertiary field names to the field names array
+		for (int i = 0; i < tertiaryFieldNameBases.length; i++) {
+			String cur = tertiaryFieldNameBases[i];
 			cur = cur.substring(0, 1).toUpperCase() + cur.substring(1);
-			names[i] = "contains" + cur;
+			names[index] = "contains" + cur;
+			index++;
 		}
+		
+		//add bianry field names to the field names array
+		for (int i = 0; i < binaryFieldNameBases.length; i++) {
+			String cur = binaryFieldNameBases[i];
+			cur = cur.substring(0, 1).toUpperCase() + cur.substring(1);
+			names[index] = "contains" + cur;
+			index++;
+		}
+		
+		//add contiuous filed names to the field names array
+		for (int i = 0; i < continuousFieldNames.length; i++) {
+			names[index] = continuousFieldNames[i];
+			index++;
+		}
+		
 		fieldNames = names;
 	}
 	
