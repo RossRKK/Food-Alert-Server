@@ -1,4 +1,5 @@
 package server;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
+
 public class Request implements Runnable {
 
 	private static String url;
@@ -37,23 +39,23 @@ public class Request implements Runnable {
 
 			if (method.equalsIgnoreCase("get")) {
 				getHeaders(out);
-				
+
 				Record r = JSONify.decode(extension);
-				
+
 				if (r != null) {
 					int[] data = r.getData();
 					String name = r.getName();
-					
-					boolean exists = dbm.exists(ean) /*|| Record.hasRecord(ean)*/;
+
+					boolean exists = dbm.exists(ean);
 					// update the row if it already exists
 					if (exists) {
 						System.out.println("Attempting to update existing record");
-						//Record.update(ean, data, dbm);
+						// Record.update(ean, data, dbm);
 						dbm.update(ean, name, data);
 						System.out.println("Set " + ean + " to " + data);
 					} else {
 						System.out.println("Attempting to add new record");
-						//Record.add(ean, data);
+						// Record.add(ean, data);
 						dbm.add(ean, name, data);
 						System.out.println("Added " + ean + " and set to " + data);
 					}
@@ -78,7 +80,8 @@ public class Request implements Runnable {
 		// Send the headers
 		out.print("HTTP/1.1 200 OK\r\n"); // Version & status code
 		out.print("Content-Type: application/JSON\r\n"); // The type of data
-		out.print("Date: " + new Date().toString() + "\r\n"); // The type of data
+		out.print("Date: " + new Date().toString() + "\r\n"); // The type of
+																// data
 		out.print("Connection: close\r\n"); // Will close stream
 		out.print("\r\n"); // End of headers
 	}
@@ -107,7 +110,7 @@ public class Request implements Runnable {
 		int index2 = lines.get(0).lastIndexOf(' ');
 		return lines.get(0).substring(index1, index2);
 	}
-	
+
 	public static String getEan(String extension) {
 		try {
 			return extension.substring(0, extension.indexOf('?'));
