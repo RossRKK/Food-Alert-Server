@@ -32,10 +32,9 @@ public class Main {
 	private static void intialiseDatabase() throws ClassNotFoundException, SQLException {
 		if (!new DatabaseManager(ConfigLoader.getUrl(), ConfigLoader.getUser(), ConfigLoader.getPass()).tableExists(ConfigLoader.getFoodTableName(), ConfigLoader.getDbName())) {
 			//create the table
-			String[] bases = ConfigLoader.getFieldNames().split(",");
 			
 			//fields are name, ean, and for each base there are 3 fields
-			int length = (bases.length * 3) + 2;
+			int length = (DatabaseManager.tertiaryFieldNameBases.length * 3) + (DatabaseManager.binaryFieldNameBases.length * 2) + DatabaseManager.continuousFieldNames.length + 2;
 			
 			String[] fieldNames = new String[length];
 			String[] fieldTypes = new String[length];
@@ -47,18 +46,36 @@ public class Main {
 			fieldTypes[1] = "varchar(25)";
 			
 			int nextIndex = 2;
-			for (int i  = 0 ; i < bases.length; i++) {
-				fieldNames[nextIndex] = bases[i] + "C";
+			for (int i  = 0 ; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
+				fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i] + "C";
+				fieldTypes[nextIndex] = "int(10)";
 				nextIndex++;
-				fieldNames[nextIndex] = bases[i] + "T";
+				
+				fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i] + "T";
+				fieldTypes[nextIndex] = "int(10)";
 				nextIndex++;
-				fieldNames[nextIndex] = bases[i] + "N";
+				
+				fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i] + "N";
+				fieldTypes[nextIndex] = "int(10)";
 				nextIndex++;
 			}
 			
-			for (int i = 2; i < fieldTypes.length; i++){
-				fieldTypes[i] = "int(10)";
+			for (int i  = 0 ; i < DatabaseManager.binaryFieldNameBases.length; i++) {
+				fieldNames[nextIndex] = DatabaseManager.binaryFieldNameBases[i] + "C";
+				fieldTypes[nextIndex] = "int(10)";
+				nextIndex++;
+				
+				fieldNames[nextIndex] = DatabaseManager.binaryFieldNameBases[i] + "N";
+				fieldTypes[nextIndex] = "int(10)";
+				nextIndex++;
 			}
+			
+			for (int i  = 0 ; i < DatabaseManager.continuousFieldNames.length; i++) {
+				fieldNames[nextIndex] = DatabaseManager.continuousFieldNames[i];
+				fieldTypes[nextIndex] = "int(255)";
+				nextIndex++;
+			}
+			
 
 			new DatabaseManager(ConfigLoader.getUrl(), ConfigLoader.getUser(), ConfigLoader.getPass()).createTable(ConfigLoader.getFoodTableName(), fieldNames, fieldTypes);
 		} else {
