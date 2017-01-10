@@ -70,7 +70,7 @@ public class ConfigLoader {
 		Request.setUser(user);
 		Request.setPass(pass);
 
-		int minSep = Integer.parseInt(minSepStr);
+		double minSep = Double.parseDouble(minSepStr);
 		JSONify.minSep = minSep;
 
 		DatabaseManager.CONTAINS = Integer.parseInt(containsStr);
