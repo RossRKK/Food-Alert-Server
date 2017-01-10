@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class JSONify {
-	public static int minSep;
+	public static double minSep;
 
 	private static final String delimiter = "&";
 
@@ -33,17 +33,17 @@ public class JSONify {
 
 				int code = DatabaseManager.UNKNOWN;
 				// determine which code to use
-				if (contains - trace > minSep) {
+				if (contains > trace) {
 					code = DatabaseManager.CONTAINS;
-				} else if (contains - none > minSep) {
+				} else if (contains > none) {
 					code = DatabaseManager.CONTAINS;
-				} else if (trace - contains > minSep) {
+				} else if (trace > contains) {
 					code = DatabaseManager.TRACE;
-				} else if (trace - none > minSep) {
+				} else if (trace > none) {
 					code = DatabaseManager.TRACE;
-				} else if (none - contains > minSep) {
+				} else if (none > contains) {
 					code = DatabaseManager.NONE;
-				} else if (none - trace > minSep) {
+				} else if (none > trace) {
 					code = DatabaseManager.NONE;
 				}
 
@@ -83,11 +83,11 @@ public class JSONify {
 				// add the field name and data
 				out += "\"" + DatabaseManager.fieldNames[j] + "\": " + data.get(j);
 				// if there is another element add a comma
-				if (j < DatabaseManager.fieldNames.length - 1) {
+				//if (j < DatabaseManager.fieldNames.length - 1) {
 					out += ", ";
-				}
+				//}
 			}
-			out += "}";
+			out += "reconfirm: \"" + shouldReconfirm(rs, data) + "\"}";
 		} else {
 			// if the data is empty send unkown codes
 			// loop through each element and add it to the string
@@ -95,13 +95,79 @@ public class JSONify {
 				// add the field name and data
 				out += "\"" + DatabaseManager.fieldNames[j] + "\": " + DatabaseManager.UNKNOWN;
 				// if there is another element add a comma
-				if (j < DatabaseManager.fieldNames.length - 1) {
+				//if (j < DatabaseManager.fieldNames.length - 1) {
 					out += ", ";
-				}
+				//}
 			}
-			out += "}";
+			out += "reconfirm: \"true\"}";
 		}
 		return out;
+	}
+	
+	/**
+	 * Determines whether the reconfirm flag should be true or false
+	 * @param rs the SQL result set to be checked
+	 * @return Whether the data should be reconfirmed
+	 * @throws SQLException 
+	 */
+	public static boolean shouldReconfirm(ResultSet rs, ArrayList<Integer> data) throws SQLException {
+		rs.beforeFirst();
+		while (rs.next()) {
+			System.out.println("Loop");
+			int index = 0;
+			for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
+				int contains = rs.getInt(DatabaseManager.tertiaryFieldNameBases[i] + "C");
+				int trace = rs.getInt(DatabaseManager.tertiaryFieldNameBases[i] + "T");
+				int none = rs.getInt(DatabaseManager.tertiaryFieldNameBases[i] + "N");
+				
+				if (data.get(index).intValue() == DatabaseManager.CONTAINS) {
+					int nextBig = trace > none ? trace : none;
+					double minSeperation = minSep * contains;
+					if (contains - nextBig <= Math.ceil(minSeperation)) {
+						return true;
+					}
+				} else if (data.get(index).intValue() == DatabaseManager.TRACE) {
+					int nextBig = contains > none ? contains : none;
+					double minSeperation = minSep * trace;
+					if (trace - nextBig <= Math.ceil(minSeperation)) {
+						return true;
+					}
+				} else if (data.get(index).intValue() == DatabaseManager.NONE) {
+					int nextBig = contains > trace ? contains : trace;
+					double minSeperation = minSep * none;
+					if (none - nextBig <= Math.ceil(minSeperation)) {
+						return true;
+					}
+				} else {
+					return true;
+				}
+				
+				index++;
+			}
+			
+			for (int i = 0; i < DatabaseManager.binaryFieldNameBases.length; i++) {
+				int contains = rs.getInt(DatabaseManager.binaryFieldNameBases[i] + "C");
+				int none = rs.getInt(DatabaseManager.binaryFieldNameBases[i] + "N");
+				
+				if (data.get(index).intValue() == DatabaseManager.CONTAINS) {
+					double minSeperation = minSep * contains;
+					if (contains - none <= Math.ceil(minSeperation)) {
+						return true;
+					}
+				} else if (data.get(index).intValue() == DatabaseManager.NONE) {
+					double minSeperation = minSep * none;
+					if (none - contains <= Math.ceil(minSeperation)) {
+						return true;
+					}
+				} else {
+					return true;
+				}
+				
+				index++;
+			}
+			
+		}
+		return false;
 	}
 
 	/**
