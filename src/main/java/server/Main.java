@@ -47,7 +47,7 @@ public class Main {
 			fieldTypes[0] = "varchar(20)";
 
 			fieldNames[1] = "name";
-			fieldTypes[1] = "varchar(25)";
+			fieldTypes[1] = "varchar(80)";
 
 			int nextIndex = 2;
 			for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {

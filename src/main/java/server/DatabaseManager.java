@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DatabaseManager {
+	private static final int VOTES = 1;
 	// fieldnames are added in this oreder:
 	// tertiary, binary, continuous
 	public static String[] fieldNames;
@@ -145,7 +146,7 @@ public class DatabaseManager {
 			} else if (data[index] == NONE) {
 				command += "0, 0, ?";
 			} else {
-				command += "0, ?";
+				command += "0, ?, 0";
 			}
 
 			// command += "?";
@@ -192,7 +193,7 @@ public class DatabaseManager {
 		// the 3 is to account for the e (so we start at the second element)
 		index = 3;
 		for (int i = 0; i < nonContinuousLength; i++) {
-			int noVotes = 1;
+			int noVotes = VOTES;
 			if (data[i] == UNKNOWN) {
 				noVotes = 0;
 			}
@@ -277,7 +278,7 @@ public class DatabaseManager {
 		index = 2;
 		// add binary and tertiary votes
 		for (int i = 0; i < nonContinuousLength; i++) {
-			int noVotes = 1;
+			int noVotes = VOTES;
 			if (data[i] == UNKNOWN) {
 				noVotes = 0;
 			}
