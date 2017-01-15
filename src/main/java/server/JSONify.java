@@ -33,17 +33,11 @@ public class JSONify {
 
 				int code = DatabaseManager.UNKNOWN;
 				// determine which code to use
-				if (contains > trace) {
+				if (contains > trace && contains > none) {
 					code = DatabaseManager.CONTAINS;
-				} else if (contains > none) {
-					code = DatabaseManager.CONTAINS;
-				} else if (trace > contains) {
+				} else if (trace > contains && trace > none) {
 					code = DatabaseManager.TRACE;
-				} else if (trace > none) {
-					code = DatabaseManager.TRACE;
-				} else if (none > contains) {
-					code = DatabaseManager.NONE;
-				} else if (none > trace) {
+				} else if (none > contains && none > trace) {
 					code = DatabaseManager.NONE;
 				}
 
