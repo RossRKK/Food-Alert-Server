@@ -1,5 +1,6 @@
 package server;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -44,8 +45,10 @@ public class DatabaseManager {
 	 *            The barcode number of the item in question
 	 * @return The formatted JSON for a given ean
 	 * @throws SQLException
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public String getJSON(String ean) throws SQLException {
+	public String getJSON(String ean) throws SQLException, ClassNotFoundException, IOException {
 		// get the results of a query for the ean using prepared
 		// statements to make injection impossible
 		PreparedStatement stmt = con
@@ -54,7 +57,7 @@ public class DatabaseManager {
 		ResultSet rs = stmt.executeQuery();
 
 		// get the json response
-		String ans = JSONify.toJSON(rs);
+		String ans = JSONify.toJSON(rs,ean);
 		stmt.close();
 		rs.close();
 		con.close();
