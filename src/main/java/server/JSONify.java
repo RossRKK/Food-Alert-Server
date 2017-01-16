@@ -74,21 +74,23 @@ public class JSONify {
 		//ask tesco if we don;t know
 		if (data.isEmpty()) {
 			Record r = TESCOManager.askTesco(ean);
-			name = r.getName();
-			int maxLength = 80;
-			if (name.length() >= maxLength) {
-				name = name.substring(0, maxLength - 1);
+			if (r != null) {
+				name = r.getName();
+				int maxLength = 80;
+				if (name.length() >= maxLength) {
+					name = name.substring(0, maxLength - 1);
+				}
+	
+				for (int i = 0; i < r.getData().length; i++) {
+					data.add(new Integer(r.getData()[i]));
+				}
+				
+				//add it ot the database
+				DatabaseManager dbm = new DatabaseManager(ConfigLoader.getUrl(), ConfigLoader.getUser(), ConfigLoader.getPass());
+				dbm.add(ean, name, r.getData());
+				//override the reconfirm flag
+				reconfirm = true;
 			}
-
-			for (int i = 0; i < r.getData().length; i++) {
-				data.add(new Integer(r.getData()[i]));
-			}
-			
-			//add it ot the database
-			DatabaseManager dbm = new DatabaseManager(ConfigLoader.getUrl(), ConfigLoader.getUser(), ConfigLoader.getPass());
-			dbm.add(ean, name, r.getData());
-			//override the reconfirm flag
-			reconfirm = true;
 		}
 		
 		// generate the output string
