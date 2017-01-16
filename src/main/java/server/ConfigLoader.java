@@ -23,6 +23,11 @@ public class ConfigLoader {
 	private static String tertiaryFieldNames;
 	private static String binaryFieldNames;
 	private static String continuousFieldNames;
+	private static String tescoUrl;
+	private static String tescoHost;
+	private static String key;
+	
+	private static String[][] allergenNames;
 
 	public static void loadConfig() throws IOException {
 		Properties prop = new Properties();
@@ -42,7 +47,6 @@ public class ConfigLoader {
 		continuousFieldNames = prop.getProperty("continuousFieldNames");
 
 		minSepStr = prop.getProperty("minVoteSeperation");
-		portStr = prop.getProperty("port");
 
 		containsStr = prop.getProperty("contains");
 		traceStr = prop.getProperty("trace");
@@ -55,29 +59,11 @@ public class ConfigLoader {
 
 		dbName = prop.getProperty("dbName");
 		foodTableName = prop.getProperty("foodTableName");
-
-		inputStream.close();
-		setValues();
-	}
-
-	private static void setValues() {
-
-		// int port = Integer.parseInt(System.getenv("PORT"));
-		// System.out.println(port);
-		// Main.setPort(port);
-
-		Request.setUrl(url);
-		Request.setUser(user);
-		Request.setPass(pass);
-
-		double minSep = Double.parseDouble(minSepStr);
-		JSONify.minSep = minSep;
-
-		DatabaseManager.CONTAINS = Integer.parseInt(containsStr);
-		DatabaseManager.TRACE = Integer.parseInt(traceStr);
-		DatabaseManager.NONE = Integer.parseInt(noneStr);
-		DatabaseManager.UNKNOWN = Integer.parseInt(unknownStr);
-
+		
+		tescoUrl = prop.getProperty("tescoUrl");
+		tescoHost = prop.getProperty("tescoHost");
+		key = prop.getProperty("key");
+		
 		String[] tertiaryBases;
 		if (tertiaryFieldNames.length() > 0) {
 			tertiaryBases = tertiaryFieldNames.split(",");
@@ -100,6 +86,35 @@ public class ConfigLoader {
 		}
 
 		DatabaseManager.setFieldBases(tertiaryBases, binaryBases, continuousBases);
+		
+		allergenNames = new String[tertiaryBases.length][];
+		//find other names
+		for (int i = 0; i < tertiaryBases.length; i++) {
+			allergenNames[i] = prop.getProperty(tertiaryBases[i] + "Alts").split(",");
+		}
+		TESCOManager.setAllergenNames(allergenNames);
+
+		inputStream.close();
+		setValues();
+	}
+
+	private static void setValues() {
+
+		// int port = Integer.parseInt(System.getenv("PORT"));
+		// System.out.println(port);
+		// Main.setPort(port);
+
+		Request.setUrl(url);
+		Request.setUser(user);
+		Request.setPass(pass);
+
+		double minSep = Double.parseDouble(minSepStr);
+		JSONify.minSep = minSep;
+
+		DatabaseManager.CONTAINS = Integer.parseInt(containsStr);
+		DatabaseManager.TRACE = Integer.parseInt(traceStr);
+		DatabaseManager.NONE = Integer.parseInt(noneStr);
+		DatabaseManager.UNKNOWN = Integer.parseInt(unknownStr);
 	}
 
 	public static String getMinSepStr() {
@@ -144,5 +159,19 @@ public class ConfigLoader {
 
 	public static String getDbName() {
 		return dbName;
+	}
+
+	public static String getTescoUrl() {
+		return tescoUrl;
+	}
+
+	
+	public static String getTescoHost() {
+		return tescoHost;
+	}
+
+	
+	public static String getKey() {
+		return key;
 	}
 }
