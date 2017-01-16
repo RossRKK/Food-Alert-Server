@@ -22,7 +22,7 @@ public class TESCOManager {
 	public static void main(String[] args) {
 		try {
 			ConfigLoader.loadConfig();
-			String ean = "5034660021667";
+			String ean = "1";
 			Record r = askTesco(ean);
 			System.out.println("Name: " + r.getName());
 			
@@ -49,17 +49,22 @@ public class TESCOManager {
 				}
 			}
 		}
-		if (index != -1) {
-			data[index] = DatabaseManager.NONE;
-		} else {
-			data[index] = DatabaseManager.CONTAINS;
+		try {
+			if (index != -1) {
+				data[index] = DatabaseManager.NONE;
+			} else {
+				data[index] = DatabaseManager.CONTAINS;
+			}
+		
+			Record r = new Record();
+			r.setData(data);
+			r.setName(getField(json, nameFieldName, '\"', '\"'));
+			
+			return r;
+		} catch (Exception e) {
+			return null;
 		}
 		
-		Record r = new Record();
-		r.setData(data);
-		r.setName(getField(json, nameFieldName, '\"', '\"'));
-		
-		return r;
 	}
 	
 	private static String getField(String json, String field, char startChar, char endChar) {
