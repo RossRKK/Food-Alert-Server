@@ -41,21 +41,18 @@ public class TESCOManager {
 		int[] data = findAllergens(ingredients, allergyAdvice);
 		
 		int index = -1;
-		if (json.toLowerCase().contains(vegetarianKeyWord)) {
-			for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {
-				if (DatabaseManager.fieldNames[i].equalsIgnoreCase(vegetarianFieldName)) {
-					index = i;
-					break;
-				}
+		for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {
+			if (DatabaseManager.fieldNames[i].equalsIgnoreCase(vegetarianFieldName)) {
+				index = i;
+				break;
 			}
 		}
+		if (json.toLowerCase().contains(vegetarianKeyWord)) {
+			data[index] = DatabaseManager.NONE;
+		} else {
+			data[index] = DatabaseManager.CONTAINS;
+		}
 		try {
-			if (index != -1) {
-				data[index] = DatabaseManager.NONE;
-			} else {
-				data[index] = DatabaseManager.CONTAINS;
-			}
-		
 			Record r = new Record();
 			r.setData(data);
 			r.setName(getField(json, nameFieldName, '\"', '\"'));
