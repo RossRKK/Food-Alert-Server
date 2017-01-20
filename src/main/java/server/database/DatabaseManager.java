@@ -275,12 +275,12 @@ public class DatabaseManager {
 
         index = 0;
         for (int i = 0; i < tertiaryFieldNameBases.length; i++) {
-            votes[index] = new DatabaseManager(url, user, pass).getVotes(ean, tertiaryFieldNameBases[i] + getExt(data[i]));
+            votes[index] = new DatabaseManager(url, user, pass).getVotes(ean, tertiaryFieldNameBases[i] + getExt(data[index]));
             index++;
         }
 
         for (int i = 0; i < binaryFieldNameBases.length; i++) {
-            votes[index] = new DatabaseManager(url, user, pass).getVotes(ean, binaryFieldNameBases[i] + getExt(data[i]));
+            votes[index] = new DatabaseManager(url, user, pass).getVotes(ean, binaryFieldNameBases[i] + getExt(data[index]));
             index++;
         }
         // set up the prepared statement
