@@ -40,9 +40,9 @@ public class TESCOManager {
         // Get the raw data
         String json = sendGet(ean);
         // Get the list of ingredients
-        String ingredients = getField(json, ingredientsFieldName, '[', ']');
+        String ingredients = getField(json, ingredientsFieldName, "[", "],");
         // Get the allelrgy adbice text
-        String allergyAdvice = getField(json, allergyFieldName, '\"', '\"');
+        String allergyAdvice = getField(json, allergyFieldName, "\"", "\"");
         // find the allergens in the ingredients and advice text
         int[] data = findAllergens(ingredients, allergyAdvice);
 
@@ -62,7 +62,7 @@ public class TESCOManager {
         try {
             Record r = new Record();
             r.setData(data);
-            r.setName(getField(json, nameFieldName, '\"', '\"'));
+            r.setName(getField(json, nameFieldName, "\"", "\""));
 
             return r;
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class TESCOManager {
      *            The character that will end the field (usually ")
      * @return The value of the field as a String
      */
-    private static String getField(String json, String field, char startChar, char endChar) {
+    private static String getField(String json, String field, String startChar, String endChar) {
         int startIndex = json.indexOf(field) + field.length();
         // find the start of the quote
         int begin = json.indexOf(startChar, startIndex) + 1;
