@@ -97,10 +97,17 @@ public class ConfigLoader {
 
         DatabaseManager.setFieldBases(tertiaryBases, binaryBases, continuousBases);
 
-        allergenNames = new String[tertiaryBases.length][];
+        allergenNames = new String[tertiaryBases.length + binaryBases.length][];
         // find other names
+        int index = 0;
         for (int i = 0; i < tertiaryBases.length; i++) {
-            allergenNames[i] = prop.getProperty(tertiaryBases[i] + "Alts").split(",");
+            allergenNames[i] = prop.getProperty(tertiaryBases[index] + "Alts").split(",");
+            index++;
+        }
+        
+        for (int i = 0; i < binaryBases.length; i++) {
+            allergenNames[i] = prop.getProperty(binaryBases[index] + "Alts").split(",");
+            index++;
         }
         TESCOManager.setAllergenNames(allergenNames);
 
