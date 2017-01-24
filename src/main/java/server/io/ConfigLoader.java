@@ -101,12 +101,12 @@ public class ConfigLoader {
         // find other names
         int index = 0;
         for (int i = 0; i < tertiaryBases.length; i++) {
-            allergenNames[i] = prop.getProperty(tertiaryBases[index] + "Alts").split(",");
+            allergenNames[index] = prop.getProperty(tertiaryBases[i] + "Alts").split(",");
             index++;
         }
         
         for (int i = 0; i < binaryBases.length; i++) {
-            allergenNames[i] = prop.getProperty(binaryBases[index] + "Alts").split(",");
+            allergenNames[index] = prop.getProperty(binaryBases[i] + "Alts").split(",");
             index++;
         }
         TESCOManager.setAllergenNames(allergenNames);
