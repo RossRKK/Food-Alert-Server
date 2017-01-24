@@ -112,7 +112,7 @@ public class TESCOManager {
         // a blank int array is created witht the correct length
         int[] data = new int[DatabaseManager.fieldNames.length];
 
-        for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
+        for (int i = 0; i < allergenNames.length; i++) {
             boolean allergen = false;
             // search for allergen name
             for (int j = 0; j < allergenNames[i].length; j++) {
