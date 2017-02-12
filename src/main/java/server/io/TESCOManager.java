@@ -37,29 +37,30 @@ public class TESCOManager {
      * @throws IOException
      */
     public static Record askTesco(String ean) throws IOException {
-        // Get the raw data
-        String json = sendGet(ean);
-        // Get the list of ingredients
-        String ingredients = getField(json, ingredientsFieldName, "[", "],");
-        // Get the allelrgy adbice text
-        String allergyAdvice = getField(json, allergyFieldName, "\"", "\"");
-        // find the allergens in the ingredients and advice text
-        int[] data = findAllergens(ingredients, allergyAdvice);
-
-        // figure out which field is vegetarian
-        int index = -1;
-        for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {
-            if (DatabaseManager.fieldNames[i].equalsIgnoreCase(vegetarianFieldName)) {
-                index = i;
-                break;
-            }
-        }
-        // if it contains "suitable for vegetarians" we can use that
-        if (json.toLowerCase().contains(vegetarianKeyWord)) {
-            data[index] = DatabaseManager.NONE;
-        }
-        // create a record oobject and return it
         try {
+            // Get the raw data
+            String json = sendGet(ean);
+            // Get the list of ingredients
+            String ingredients = getField(json, ingredientsFieldName, "[", "],");
+            // Get the allelrgy adbice text
+            String allergyAdvice = getField(json, allergyFieldName, "\"", "\"");
+            // find the allergens in the ingredients and advice text
+            int[] data = findAllergens(ingredients, allergyAdvice);
+    
+            // figure out which field is vegetarian
+            int index = -1;
+            for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {
+                if (DatabaseManager.fieldNames[i].equalsIgnoreCase(vegetarianFieldName)) {
+                    index = i;
+                    break;
+                }
+            }
+            // if it contains "suitable for vegetarians" we can use that
+            if (json.toLowerCase().contains(vegetarianKeyWord)) {
+                data[index] = DatabaseManager.NONE;
+            }
+            // create a record oobject and return it
+        
             Record r = new Record();
             r.setData(data);
             r.setName(getField(json, nameFieldName, "\"", "\""));
