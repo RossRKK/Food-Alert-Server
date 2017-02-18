@@ -1,0 +1,5 @@
+(function(ui) {
+var d = new Date();
+d.setTime(d.getTime()+7776000000);
+document.cookie="adv_ui="+ui+"; expires="+d.toGMTString()+"; path=/";
+})("Vd2N8N82EeaoXkM33PwPtQ");
