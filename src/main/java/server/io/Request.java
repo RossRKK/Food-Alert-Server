@@ -109,7 +109,7 @@ public class Request implements Runnable {
         extension = getExtension(lines);
         path = getPath(extension);
         
-        endodedData = getData(extension);
+        endodedData = getData();
         
         ean = getEan(endodedData);
         method = getMethod(lines);
