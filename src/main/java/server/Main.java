@@ -85,6 +85,8 @@ public class Main {
         } else {
             // check it has the required fields
         }
+        
+        //TODO add checks for restaurant, branch and restaurant item tables
     }
 
     public static void setPort(int p) {
