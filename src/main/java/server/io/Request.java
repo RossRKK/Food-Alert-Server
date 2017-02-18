@@ -157,8 +157,8 @@ public class Request implements Runnable {
      * @param extension The full extension of the URL
      * @return The encoded data at the end of the URL
      */
-    private String getData(String extension) {
-        return extension.substring(extension.lastIndexOf('/'),  extension.length());
+    private String getData() {
+        return extension.substring(extension.lastIndexOf('/') + 1,  extension.length());
     }
 
     /**
