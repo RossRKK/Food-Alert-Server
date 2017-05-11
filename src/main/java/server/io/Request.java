@@ -49,8 +49,9 @@ public class Request implements Runnable {
                     //handle barcode requests to /b/
                     barcodeRequest();
                     break;
-                case "r":
+                case "s":
                     //handle restaurant requests
+                    serviceRequest();
                     break;
                 case "branch":
                     //handle branch requests
@@ -79,10 +80,28 @@ public class Request implements Runnable {
             } catch (IOException e) {
                 System.out.println("Error closing client socket");
             }
+            try {
+                dbm.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }
     
+    /**
+     * Respond to a request about a food service.
+     * @throws IOException 
+     * @throws SQLException 
+     * @throws ClassNotFoundException 
+     */
+    private void serviceRequest() throws ClassNotFoundException, SQLException, IOException {
+        String json = dbm.getJSONService(endodedData);
+        
+        out.println(json);
+        System.out.println(json);
+    }
+
     /**
      * setup the IO used by this request
      * @throws ClassNotFoundException
@@ -131,22 +150,22 @@ public class Request implements Runnable {
                 int[] data = r.getData();
                 String name = r.getName();
 
-                boolean exists = dbm.exists(ean);
+                boolean exists = dbm.existsBarcode(ean);
                 // update the row if it already exists
                 if (exists) {
                     System.out.println("Attempting to update existing record");
                     // Record.update(ean, data, dbm);
-                    dbm.update(ean, name, data);
+                    dbm.updateBarcode(ean, name, data);
                     System.out.println("Set " + ean + " to " + data);
                 } else {
                     System.out.println("Attempting to add new record");
                     // Record.add(ean, data);
-                    dbm.add(ean, name, data);
+                    dbm.addBarcode(ean, name, data);
                     System.out.println("Added " + ean + " and set to " + data);
                 }
             } else {
                 // send the response to the client
-                out.print(dbm.getJSON(ean) + "\r\n");
+                out.print(dbm.getJSONBarcode(ean) + "\r\n");
                 System.out.println("Returned data on: " + ean);
             }
         }

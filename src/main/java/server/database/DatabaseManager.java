@@ -52,6 +52,10 @@ public class DatabaseManager {
         // open the connection to the mySQL server
         con = DriverManager.getConnection(url, user, pass);
     }
+    
+    public void close() throws SQLException {
+        con.close();
+    }
 
     /**
      * Returns the database's details on a given ean as JSON
@@ -63,7 +67,7 @@ public class DatabaseManager {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public String getJSON(String ean) throws SQLException, ClassNotFoundException, IOException {
+    public String getJSONBarcode(String ean) throws SQLException, ClassNotFoundException, IOException {
         // get the results of a query for the ean using prepared
         // statements to make injection impossible
         PreparedStatement stmt = con.prepareStatement("select * from " + ConfigLoader.getFoodTableName() + " where ean = ?");
@@ -71,9 +75,40 @@ public class DatabaseManager {
         ResultSet rs = stmt.executeQuery();
 
         // get the json response
-        String ans = JSONify.toJSON(rs, ean);
+        String ans = JSONify.toJSONBarcode(rs, ean);
         stmt.close();
         rs.close();
+        con.close();
+        return ans;
+    }
+    
+
+    /**
+     * Generate the json for a food service
+     * @param id The id of the food service
+     * @throws SQLException 
+     * @throws IOException 
+     * @throws ClassNotFoundException 
+     */
+    public String getJSONService(String id) throws SQLException, ClassNotFoundException, IOException {
+        //get the details for the restaurant
+        PreparedStatement stmtServ = con.prepareStatement("select * from " + ConfigLoader.getServiceTableName() + " where foodServiceID = ?");
+        stmtServ.setString(1, id);
+        ResultSet service = stmtServ.executeQuery();
+        String name = service.getString("name");
+        String desc = service.getString("description");
+        stmtServ.close();
+        service.close();
+        
+        //get all of the items the restaurant sells
+        PreparedStatement stmtItem = con.prepareStatement("select * from " + ConfigLoader.getItemTableName() + " where foodServiceID = ?");
+        stmtItem.setString(1, id);
+        ResultSet items = stmtItem.executeQuery();
+
+        // get the json response
+        String ans = JSONify.toJSONService(name, desc, items);
+        stmtItem.close();
+        items.close();
         con.close();
         return ans;
     }
@@ -111,7 +146,7 @@ public class DatabaseManager {
      *            The details of the item
      * @throws SQLException
      */
-    public void add(String ean, String name, int data[]) throws SQLException {
+    public void addBarcode(String ean, String name, int data[]) throws SQLException {
         // insert into food (ean, containsNuts) values (?, ?)
         // generate the correct prepared statement
         // "insert into food (ean, fieldName1, fieldName2, ...) values (?, ?, ?,
@@ -237,7 +272,7 @@ public class DatabaseManager {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void update(String ean, String name, int data[]) throws SQLException, ClassNotFoundException {
+    public void updateBarcode(String ean, String name, int data[]) throws SQLException, ClassNotFoundException {
         // update food SET containsNuts = ? WHERE ean = ?
         // generate the correct prepared statement
         String command = "update " + ConfigLoader.getFoodTableName() + " set name = ?, ";
@@ -329,7 +364,7 @@ public class DatabaseManager {
      * @return Whether that item exists in the database
      * @throws SQLException
      */
-    public boolean exists(String ean) throws SQLException {
+    public boolean existsBarcode(String ean) throws SQLException {
         // run a query to see if the element already exists
         PreparedStatement statement = con.prepareStatement("select 1 from " + ConfigLoader.getFoodTableName() + " where ean = ?");
         statement.setString(1, ean);
@@ -386,13 +421,15 @@ public class DatabaseManager {
          * SELECT table_name FROM information_schema.tables WHERE table_schema =
          * 'databasename' AND table_name = 'testtable';
          */
-        PreparedStatement statement = con.prepareStatement("select ? from information_schema.tables where table_schema = ?;");
+        PreparedStatement statement = con.prepareStatement("select ? from information_schema.tables where table_schema = ? and table_name = ?;");
         statement.setString(1, tableName);
         statement.setString(2, dbName);
+        statement.setString(3, tableName);
         ResultSet rs = statement.executeQuery();
         boolean ans = rs.next();
         statement.close();
         rs.close();
+        System.out.println(ans);
         return ans;
     }
 
@@ -407,21 +444,35 @@ public class DatabaseManager {
      *            The SQL types of the fields
      * @throws SQLException
      */
-    public void createTable(String tableName, String[] fieldNames, String[] fieldTypes) throws SQLException {
+    public void createTable(String tableName, String[] fieldNames, String[] fieldTypes, String[] extras) throws SQLException {
         // create table table_name (fieldName type, ...);
         String command = "create table " + tableName + " (";
 
         for (int i = 0; i < fieldNames.length; i++) {
             command += fieldNames[i] + " " + fieldTypes[i];
+  
             if (i < fieldNames.length - 1) {
                 command += ", ";
             }
         }
+        
+        if (extras != null && extras.length > 0) {
+            command += ", ";
+            for (int i = 0; i < extras.length; i++) {
+                command += extras[i];
+      
+                if (i < extras.length - 1) {
+                    command += ", ";
+                }
+            }
+        }
 
         command += ");";
+        System.out.println(command);
         PreparedStatement statement = con.prepareStatement(command);
 
         statement.execute();
         statement.close();
     }
+
 }

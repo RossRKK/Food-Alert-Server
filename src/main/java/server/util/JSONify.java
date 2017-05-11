@@ -14,6 +14,51 @@ public class JSONify {
     public static double minSep;
 
     private static final String delimiter = "&";
+    
+
+    /**
+     * Get json representing the service and the items it sells.
+     * @param name The name of the service.
+     * @param desc The description of the service.
+     * @param rs The result set that contains the services items
+     * @return A json object representing the service.
+     * @throws SQLException
+     */
+    public static String toJSONService(String name, String desc, ResultSet rs) throws SQLException {
+        String out = "{";
+        if (name != null) {
+            out += "\"name\": \"" + name + "\", ";
+        }
+        if (desc != null) {
+            out += "\"description\": \"" + desc + "\", ";
+        }
+        
+        out += "\"items\": ["; 
+        
+        while (rs.next()) {
+            out += "{\"name\": " + rs.getString(2) 
+            + ",\"description\": " + rs.getString(3)
+            + ",\"category\": " + rs.getString(4)
+            + ",\"price\": " + rs.getDouble(5);
+            int index = 6;
+            
+            for (int i = 0; i < DatabaseManager.binaryFieldNameBases.length; i++) {
+                out += ",\"" + DatabaseManager.binaryFieldNameBases[i] + "\"" + rs.getBoolean(index);
+                index++;
+            }
+            
+            for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
+                out += ",\"" + DatabaseManager.tertiaryFieldNameBases[i] + "\"" + rs.getBoolean(index);
+                index++;
+            }
+            
+            out += "}"; 
+        }
+        
+        out += "]}";
+        
+        return out;
+    }
 
     /**
      * Produce JSON from an SQL result set
@@ -25,7 +70,7 @@ public class JSONify {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static String toJSON(ResultSet rs, String ean) throws SQLException, IOException, ClassNotFoundException {
+    public static String toJSONBarcode(ResultSet rs, String ean) throws SQLException, IOException, ClassNotFoundException {
         ArrayList<Integer> data = new ArrayList<Integer>();
         String name = "";
         // read in all of the data from the mySQL database
@@ -92,7 +137,7 @@ public class JSONify {
 
                 // add it ot the database
                 DatabaseManager dbm = new DatabaseManager(ConfigLoader.getUrl(), ConfigLoader.getUser(), ConfigLoader.getPass());
-                dbm.add(ean, name, r.getData());
+                dbm.addBarcode(ean, name, r.getData());
                 // override the reconfirm flag
                 reconfirm = true;
             }
@@ -252,4 +297,5 @@ public class JSONify {
 
         return out;
     }
+
 }

@@ -35,7 +35,9 @@ public class Main {
     }
 
     private static void intialiseDatabase() throws ClassNotFoundException, SQLException {
-        if (!new DatabaseManager(ConfigLoader.getUrl(), ConfigLoader.getUser(), ConfigLoader.getPass()).tableExists(ConfigLoader.getFoodTableName(), ConfigLoader.getDbName())) {
+        DatabaseManager dbm = new DatabaseManager(ConfigLoader.getUrl(), ConfigLoader.getUser(), ConfigLoader.getPass());
+        //create the supermarket item table
+        if (!dbm.tableExists(ConfigLoader.getFoodTableName(), ConfigLoader.getDbName())) {
             // create the table
 
             // fields are name, ean, and for each base there are 3 fields
@@ -43,9 +45,11 @@ public class Main {
 
             String[] fieldNames = new String[length];
             String[] fieldTypes = new String[length];
+            String[] extras = new String[1];
 
             fieldNames[0] = "ean";
             fieldTypes[0] = "varchar(20)";
+            extras[0] = "primary key (" + fieldNames[0] + ")";
 
             fieldNames[1] = "name";
             fieldTypes[1] = "varchar(80)";
@@ -53,40 +57,114 @@ public class Main {
             int nextIndex = 2;
             for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
                 fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i] + "C";
-                fieldTypes[nextIndex] = "int(10)";
+                fieldTypes[nextIndex] = "int";
                 nextIndex++;
 
                 fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i] + "T";
-                fieldTypes[nextIndex] = "int(10)";
+                fieldTypes[nextIndex] = "int";
                 nextIndex++;
 
                 fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i] + "N";
-                fieldTypes[nextIndex] = "int(10)";
+                fieldTypes[nextIndex] = "int";
                 nextIndex++;
             }
 
             for (int i = 0; i < DatabaseManager.binaryFieldNameBases.length; i++) {
                 fieldNames[nextIndex] = DatabaseManager.binaryFieldNameBases[i] + "C";
-                fieldTypes[nextIndex] = "int(10)";
+                fieldTypes[nextIndex] = "int";
                 nextIndex++;
 
                 fieldNames[nextIndex] = DatabaseManager.binaryFieldNameBases[i] + "N";
-                fieldTypes[nextIndex] = "int(10)";
+                fieldTypes[nextIndex] = "int";
                 nextIndex++;
             }
 
             for (int i = 0; i < DatabaseManager.continuousFieldNames.length; i++) {
                 fieldNames[nextIndex] = DatabaseManager.continuousFieldNames[i];
-                fieldTypes[nextIndex] = "int(10)";
+                fieldTypes[nextIndex] = "double";
                 nextIndex++;
             }
 
-            new DatabaseManager(ConfigLoader.getUrl(), ConfigLoader.getUser(), ConfigLoader.getPass()).createTable(ConfigLoader.getFoodTableName(), fieldNames, fieldTypes);
-        } else {
-            // check it has the required fields
+            dbm.createTable(ConfigLoader.getFoodTableName(), fieldNames, fieldTypes, extras);
         }
         
-        //TODO add checks for restaurant, branch and restaurant item tables
+        //create the food services tables
+        if (!dbm.tableExists(ConfigLoader.getServiceTableName(), ConfigLoader.getDbName())) {
+            // create the table
+
+            // fields are id, name and description
+            int length = 3;
+
+            String[] fieldNames = new String[length];
+            String[] fieldTypes = new String[length];
+            String[] extras = new String[1];
+
+            fieldNames[0] = "foodServiceID";
+            fieldTypes[0] = "varchar(20)";
+            extras[0] = "primary key (" + fieldNames[0] + ")";
+
+            fieldNames[1] = "name";
+            fieldTypes[1] = "varchar(80)";
+            
+            fieldNames[2] = "description";
+            fieldTypes[2] = "varchar(140)";
+
+            dbm.createTable(ConfigLoader.getServiceTableName(), fieldNames, fieldTypes, extras);
+        }
+        
+        //create the service items table
+        if (!dbm.tableExists(ConfigLoader.getItemTableName(), ConfigLoader.getDbName())) {
+            // create the table
+
+            // fields are name, ean, and for each base there are 3 fields
+            int length = 6 + DatabaseManager.tertiaryFieldNameBases.length + DatabaseManager.binaryFieldNameBases.length + DatabaseManager.continuousFieldNames.length;
+
+            String[] fieldNames = new String[length];
+            String[] fieldTypes = new String[length];
+            String[] extras = new String[2];
+
+            fieldNames[0] = "itemID";
+            fieldTypes[0] = "varchar(20)";
+            extras[0] = "primary key (" + fieldNames[0] + ")";
+
+            fieldNames[1] = "name";
+            fieldTypes[1] = "varchar(80)";
+            
+            fieldNames[2] = "description";
+            fieldTypes[2] = "varchar(140)";
+            
+            fieldNames[3] = "category";
+            fieldTypes[3] = "varchar(80)";
+            
+            fieldNames[4] = "price";
+            fieldTypes[4] = "double";
+            
+            fieldNames[5] = "serviceID";
+            fieldTypes[5] = "varchar(20)";
+            //FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+            extras[1] = "foreign key (" + fieldNames[5] + ") references " + ConfigLoader.getServiceTableName() + "(serviceID)";
+
+            int nextIndex = 6;
+            for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
+                fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i];
+                fieldTypes[nextIndex] = "boolean";
+                nextIndex++;
+            }
+
+            for (int i = 0; i < DatabaseManager.binaryFieldNameBases.length; i++) {
+                fieldNames[nextIndex] = DatabaseManager.binaryFieldNameBases[i];
+                fieldTypes[nextIndex] = "boolean";
+                nextIndex++;
+            }
+
+            for (int i = 0; i < DatabaseManager.continuousFieldNames.length; i++) {
+                fieldNames[nextIndex] = DatabaseManager.continuousFieldNames[i];
+                fieldTypes[nextIndex] = "double";
+                nextIndex++;
+            }
+
+            dbm.createTable(ConfigLoader.getItemTableName(), fieldNames, fieldTypes, extras);
+        }
     }
 
     public static void setPort(int p) {
