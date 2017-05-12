@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import server.io.ConfigLoader;
 import server.util.JSONify;
@@ -473,6 +474,20 @@ public class DatabaseManager {
 
         statement.execute();
         statement.close();
+    }
+
+    public ArrayList<String> search(String query) throws SQLException {
+        PreparedStatement statement = con.prepareStatement("select serviceID from " + ConfigLoader.getServiceTableName() + " where name like ?;");
+        statement.setString(1, "%" + query + "%");
+        ResultSet rs = statement.executeQuery();
+        
+        ArrayList<String> ids = new ArrayList<String>();
+        
+        while (rs.next()) {
+            ids.add(rs.getString("serviceID"));
+        }
+        
+        return ids;
     }
 
 }

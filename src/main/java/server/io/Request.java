@@ -25,7 +25,7 @@ public class Request implements Runnable {
     private String extension;
     private String path;
     
-    private String endodedData;
+    private String encodedData;
     
     private String ean;
     private String method;
@@ -51,7 +51,11 @@ public class Request implements Runnable {
                     break;
                 case "s":
                     //handle restaurant requests
-                    serviceRequest();
+                    out.println(serviceRequest(encodedData));
+                    break;
+                case "search":
+                    //find restaurants with a matching name
+                    search();
                     break;
                 case "branch":
                     //handle branch requests
@@ -90,16 +94,41 @@ public class Request implements Runnable {
     }
     
     /**
+     * Search the database for a service.
+     * @throws SQLException 
+     * @throws IOException 
+     * @throws ClassNotFoundException 
+     */
+    private void search() throws SQLException, ClassNotFoundException, IOException {
+        //due to the way that we get the ean it will also be the 
+        String query = getQuery(encodedData);
+        
+        ArrayList<String> results = dbm.search(query);
+        
+        String json = "{\"results\": [";
+        
+        for (int i = 0; i < results.size(); i++) {
+            json += serviceRequest(results.get(i));
+            if (i < results.size() - 1) {
+                json += ", ";
+            }
+        }
+        
+        json += "]}";
+        
+        out.println(json);
+    }
+
+    /**
      * Respond to a request about a food service.
      * @throws IOException 
      * @throws SQLException 
      * @throws ClassNotFoundException 
      */
-    private void serviceRequest() throws ClassNotFoundException, SQLException, IOException {
-        String json = dbm.getJSONService(endodedData);
+    private String serviceRequest(String serviceID) throws ClassNotFoundException, SQLException, IOException {
+        String json = dbm.getJSONService(serviceID);
         
-        out.println(json);
-        System.out.println(json);
+        return json;
     }
 
     /**
@@ -128,9 +157,9 @@ public class Request implements Runnable {
         extension = getExtension(lines);
         path = getPath(extension);
         
-        endodedData = getData();
+        encodedData = getData();
         
-        ean = getEan(endodedData);
+        ean = getEan(encodedData);
         method = getMethod(lines);
     }
     
@@ -144,7 +173,7 @@ public class Request implements Runnable {
         if (method.equalsIgnoreCase("get")) {
             printHeaders();
 
-            Record r = JSONify.decode(endodedData);
+            Record r = JSONify.decode(encodedData);
 
             if (r != null) {
                 int[] data = r.getData();
@@ -232,6 +261,19 @@ public class Request implements Runnable {
             return extension.substring(0, extension.indexOf('?'));
         } catch (StringIndexOutOfBoundsException e) {
             return extension;
+        }
+    }
+    
+    /**
+     * Get the search query from some endoded data.
+     * @param endcodedData The encoded data.
+     * @return The search query
+     */
+    public static String getQuery(String endcodedData) {
+        try {
+            return endcodedData.substring(endcodedData.indexOf("query"), endcodedData.indexOf('&'));
+        } catch (StringIndexOutOfBoundsException e) {
+            return endcodedData.substring(endcodedData.indexOf("query"));
         }
     }
 
