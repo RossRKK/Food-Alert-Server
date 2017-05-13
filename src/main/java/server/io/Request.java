@@ -44,6 +44,7 @@ public class Request implements Runnable {
             setUpIO();
 
             processURL();
+            
             switch (path) {
                 case "b":
                     //handle barcode requests to /b/
@@ -102,6 +103,7 @@ public class Request implements Runnable {
     private void search() throws SQLException, ClassNotFoundException, IOException {
         //due to the way that we get the ean it will also be the 
         String query = getQuery(encodedData);
+        System.out.println(query);
         
         ArrayList<String> results = dbm.search(query);
         
@@ -115,7 +117,6 @@ public class Request implements Runnable {
         }
         
         json += "]}";
-        
         out.println(json);
     }
 
@@ -215,7 +216,16 @@ public class Request implements Runnable {
      * @return The path that the request was directed at
      */
     private String getPath(String extension) {
-        return extension.substring(0, extension.lastIndexOf('/'));
+        try {
+            return extension.substring(0, extension.lastIndexOf('?'));
+        } catch (IndexOutOfBoundsException e) {
+            try {
+                return extension.substring(0, extension.lastIndexOf('/'));
+            } catch (IndexOutOfBoundsException e1) {
+                return  extension;
+            }
+        }
+        
     }
 
     /**
@@ -270,10 +280,11 @@ public class Request implements Runnable {
      * @return The search query
      */
     public static String getQuery(String endcodedData) {
+        String label = "query=";
         try {
-            return endcodedData.substring(endcodedData.indexOf("query"), endcodedData.indexOf('&'));
+            return endcodedData.substring(endcodedData.indexOf(label) + label.length(), endcodedData.indexOf('&'));
         } catch (StringIndexOutOfBoundsException e) {
-            return endcodedData.substring(endcodedData.indexOf("query"));
+            return endcodedData.substring(endcodedData.indexOf(label) + label.length());
         }
     }
 

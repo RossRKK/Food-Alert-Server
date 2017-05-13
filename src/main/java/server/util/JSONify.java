@@ -36,25 +36,26 @@ public class JSONify {
         out += "\"items\": ["; 
         
         while (rs.next()) {
-            out += "{\"name\": " + rs.getString(2) 
-            + ",\"description\": " + rs.getString(3)
-            + ",\"category\": " + rs.getString(4)
-            + ",\"price\": " + rs.getDouble(5);
+            out += "{\"name\": \"" + rs.getString(2) + "\""
+            + ",\"description\": \"" + rs.getString(3) + "\""
+            + ",\"category\": \"" + rs.getString(4) + "\""
+            + ",\"price\": \"" + rs.getDouble(5) + "\"";
             int index = 6;
             
             for (int i = 0; i < DatabaseManager.binaryFieldNameBases.length; i++) {
-                out += ",\"" + DatabaseManager.binaryFieldNameBases[i] + "\"" + rs.getBoolean(index);
+                out += ",\"" + DatabaseManager.binaryFieldNameBases[i] + "\": \"" + rs.getString(index) + "\"";
                 index++;
             }
             
             for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
-                out += ",\"" + DatabaseManager.tertiaryFieldNameBases[i] + "\"" + rs.getBoolean(index);
+                out += ",\"" + DatabaseManager.tertiaryFieldNameBases[i] + "\": \"" + rs.getString(index) + "\"";
                 index++;
             }
             
-            out += "}"; 
+            out += "},"; 
         }
-        
+        //remove the last comma
+        out = out.substring(0, out.length() - 1);
         out += "]}";
         
         return out;

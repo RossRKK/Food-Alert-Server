@@ -35,6 +35,8 @@ public class Main {
     }
 
     private static void intialiseDatabase() throws ClassNotFoundException, SQLException {
+        //TODO database field names and types should be externalised
+        
         DatabaseManager dbm = new DatabaseManager(ConfigLoader.getUrl(), ConfigLoader.getUser(), ConfigLoader.getPass());
         //create the supermarket item table
         if (!dbm.tableExists(ConfigLoader.getFoodTableName(), ConfigLoader.getDbName())) {
@@ -55,33 +57,35 @@ public class Main {
             fieldTypes[1] = "varchar(80)";
 
             int nextIndex = 2;
+            String type = "int";
             for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
                 fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i] + "C";
-                fieldTypes[nextIndex] = "int";
+                fieldTypes[nextIndex] = type;
                 nextIndex++;
 
                 fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i] + "T";
-                fieldTypes[nextIndex] = "int";
+                fieldTypes[nextIndex] = type;
                 nextIndex++;
 
                 fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i] + "N";
-                fieldTypes[nextIndex] = "int";
+                fieldTypes[nextIndex] = type;
                 nextIndex++;
             }
 
             for (int i = 0; i < DatabaseManager.binaryFieldNameBases.length; i++) {
                 fieldNames[nextIndex] = DatabaseManager.binaryFieldNameBases[i] + "C";
-                fieldTypes[nextIndex] = "int";
+                fieldTypes[nextIndex] = type;
                 nextIndex++;
 
                 fieldNames[nextIndex] = DatabaseManager.binaryFieldNameBases[i] + "N";
-                fieldTypes[nextIndex] = "int";
+                fieldTypes[nextIndex] = type;
                 nextIndex++;
             }
 
+            type = "double";
             for (int i = 0; i < DatabaseManager.continuousFieldNames.length; i++) {
                 fieldNames[nextIndex] = DatabaseManager.continuousFieldNames[i];
-                fieldTypes[nextIndex] = "double";
+                fieldTypes[nextIndex] = type;
                 nextIndex++;
             }
 
@@ -145,21 +149,23 @@ public class Main {
             extras[1] = "foreign key (" + fieldNames[5] + ") references " + ConfigLoader.getServiceTableName() + "(serviceID)";
 
             int nextIndex = 6;
+            String type = "varchar(1)";
             for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
                 fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i];
-                fieldTypes[nextIndex] = "boolean";
+                fieldTypes[nextIndex] = type;
                 nextIndex++;
             }
 
             for (int i = 0; i < DatabaseManager.binaryFieldNameBases.length; i++) {
                 fieldNames[nextIndex] = DatabaseManager.binaryFieldNameBases[i];
-                fieldTypes[nextIndex] = "boolean";
+                fieldTypes[nextIndex] = type;
                 nextIndex++;
             }
 
+            type = "double";
             for (int i = 0; i < DatabaseManager.continuousFieldNames.length; i++) {
                 fieldNames[nextIndex] = DatabaseManager.continuousFieldNames[i];
-                fieldTypes[nextIndex] = "double";
+                fieldTypes[nextIndex] = type;
                 nextIndex++;
             }
 

@@ -93,16 +93,17 @@ public class DatabaseManager {
      */
     public String getJSONService(String id) throws SQLException, ClassNotFoundException, IOException {
         //get the details for the restaurant
-        PreparedStatement stmtServ = con.prepareStatement("select * from " + ConfigLoader.getServiceTableName() + " where foodServiceID = ?");
+        PreparedStatement stmtServ = con.prepareStatement("select * from " + ConfigLoader.getServiceTableName() + " where serviceID = ?");
         stmtServ.setString(1, id);
         ResultSet service = stmtServ.executeQuery();
+        service.next();
         String name = service.getString("name");
         String desc = service.getString("description");
         stmtServ.close();
         service.close();
         
         //get all of the items the restaurant sells
-        PreparedStatement stmtItem = con.prepareStatement("select * from " + ConfigLoader.getItemTableName() + " where foodServiceID = ?");
+        PreparedStatement stmtItem = con.prepareStatement("select * from " + ConfigLoader.getItemTableName() + " where serviceID = ?");
         stmtItem.setString(1, id);
         ResultSet items = stmtItem.executeQuery();
 
