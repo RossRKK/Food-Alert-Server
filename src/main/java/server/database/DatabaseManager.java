@@ -468,7 +468,7 @@ public class DatabaseManager {
             }
         }
 
-        command += ");";
+        command += ") ENGINE=INNODB;";
         System.out.println(command);
         PreparedStatement statement = con.prepareStatement(command);
 

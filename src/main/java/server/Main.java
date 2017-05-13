@@ -99,7 +99,7 @@ public class Main {
             String[] fieldTypes = new String[length];
             String[] extras = new String[1];
 
-            fieldNames[0] = "foodServiceID";
+            fieldNames[0] = "serviceID";
             fieldTypes[0] = "varchar(20)";
             extras[0] = "primary key (" + fieldNames[0] + ")";
 
