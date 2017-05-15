@@ -149,7 +149,7 @@ public class Main {
             extras[1] = "foreign key (" + fieldNames[5] + ") references " + ConfigLoader.getServiceTableName() + "(serviceID)";
 
             int nextIndex = 6;
-            String type = "varchar(1)";
+            String type = "int(1)";
             for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
                 fieldNames[nextIndex] = DatabaseManager.tertiaryFieldNameBases[i];
                 fieldTypes[nextIndex] = type;

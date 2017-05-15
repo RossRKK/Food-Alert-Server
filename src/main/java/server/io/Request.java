@@ -52,6 +52,7 @@ public class Request implements Runnable {
                     break;
                 case "s":
                     //handle restaurant requests
+                    printHeaders();
                     out.println(serviceRequest(encodedData));
                     break;
                 case "search":
@@ -101,6 +102,7 @@ public class Request implements Runnable {
      * @throws ClassNotFoundException 
      */
     private void search() throws SQLException, ClassNotFoundException, IOException {
+        printHeaders();
         //due to the way that we get the ean it will also be the 
         String query = getQuery(encodedData);
         System.out.println(query);
@@ -118,6 +120,7 @@ public class Request implements Runnable {
         
         json += "]}";
         out.println(json);
+        System.out.println("Returned results for: " + query);
     }
 
     /**

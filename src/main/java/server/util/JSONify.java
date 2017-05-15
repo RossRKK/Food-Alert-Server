@@ -39,16 +39,17 @@ public class JSONify {
             out += "{\"name\": \"" + rs.getString(2) + "\""
             + ",\"description\": \"" + rs.getString(3) + "\""
             + ",\"category\": \"" + rs.getString(4) + "\""
-            + ",\"price\": \"" + rs.getDouble(5) + "\"";
-            int index = 6;
+            + ",\"price\": \"" + rs.getString(5) + "\"";
+            //skip one for the foreiggn key
+            int index = 7;
             
             for (int i = 0; i < DatabaseManager.binaryFieldNameBases.length; i++) {
-                out += ",\"" + DatabaseManager.binaryFieldNameBases[i] + "\": \"" + rs.getString(index) + "\"";
+                out += ",\"" + DatabaseManager.binaryFieldNameBases[i] + "\": \"" + rs.getInt(index) + "\"";
                 index++;
             }
             
             for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
-                out += ",\"" + DatabaseManager.tertiaryFieldNameBases[i] + "\": \"" + rs.getString(index) + "\"";
+                out += ",\"" + DatabaseManager.tertiaryFieldNameBases[i] + "\": \"" + rs.getInt(index) + "\"";
                 index++;
             }
             
