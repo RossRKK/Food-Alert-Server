@@ -43,13 +43,8 @@ public class JSONify {
             //skip one for the foreiggn key
             int index = 7;
             
-            for (int i = 0; i < DatabaseManager.binaryFieldNameBases.length; i++) {
-                out += ",\"" + DatabaseManager.binaryFieldNameBases[i] + "\": \"" + rs.getInt(index) + "\"";
-                index++;
-            }
-            
-            for (int i = 0; i < DatabaseManager.tertiaryFieldNameBases.length; i++) {
-                out += ",\"" + DatabaseManager.tertiaryFieldNameBases[i] + "\": \"" + rs.getInt(index) + "\"";
+            for (int i = 0; i < DatabaseManager.fieldNames.length; i++) {
+                out += ",\"" + DatabaseManager.fieldNames[i] + "\": " + rs.getInt(index);
                 index++;
             }
             
