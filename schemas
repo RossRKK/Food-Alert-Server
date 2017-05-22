@@ -8,7 +8,7 @@ foodService (foodServiceID varchar(20), name varchar(80), description varchar(14
 
 Food Service Items:
 
-item (itemID varchar(20), name varchar(80), description varchar(140), category varchar(80), price double(), foodServiceID varchar(20), [fields boolean]);
+item (itemID varchar(20), name varchar(80), description varchar(140), category varchar(80), price double(), foodServiceID varchar(20), [fields int]);
 
 Fields:
 vegetarian,vegan

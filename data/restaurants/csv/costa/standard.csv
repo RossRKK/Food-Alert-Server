@@ -1,178 +1,178 @@
 "itemID","name","description","category","price","restaurantID","vegetarian","vegan","milk","eggs","peanuts","treeNuts","soy","wheatGluten","fish","shellFish"
-1,"Layered Carrot Cake",,"Cakes, Traybakes and Muffins",-1,"costa",1,1,3,3,3,3,1,3,3,1
-2,"Layered Carrot Cake",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
-3,"Cherry Bakewell Tart",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
-4,"Triple Chocolate Muffin",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
-5,"Lemon Muffin",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
-6,"Raspberry And White Chocolate Muffin",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
-7,"Chocolate Tiffin",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,1,1,3,3,3,1,1
-8,"Raspberry And Almond Bake",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,1,3,1,1
-9,"Granola Square",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,1,1,3,1,1,1,1
-10,"Lemon Tart",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
-11,"Caramel Shortbread",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
-12,"Chocolate Brownie",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
-13,"Chocolate Cornflake Crunch",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
-14,"Lemon Drizzle Loaf Cake",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
-15,"Coffee & Walnut Loaf Cake",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
-16,"Salted Caramel Muffin",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
-17,"Caramel Crisp",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
-18,"Blueberry Muffin",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
-19,"Banana Bread Loaf Cake",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
-20,"Malty Chocolate Crunch",,"Cakes, Traybakes and Muffins",-1,"costa",1,3,3,1,1,3,3,1,1,1
-21,"Yoghurt with Raspberry & Strawberry Compote",,"Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
-22,"Fruity Crumble (Gluten Dairy Free, contains GF oats)",,"Impulse",-1,"costa",1,1,1,1,1,3,1,1,1,1
-23,"Mini Shortbread Bites",,"Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
-24,"Fruity Flapjack",,"Impulse",-1,"costa",1,3,3,1,1,3,1,1,1,1
-25,"Nutty Flapjack",,"Impulse",-1,"costa",1,3,3,1,1,3,1,1,1,1
-26,"Chocolate Brownie (Gluten Free)",,"Impulse",-1,"costa",1,3,3,3,1,3,3,1,1,1
-27,"Stem Ginger Biscuits",,"Impulse",-1,"costa",1,3,3,1,1,3,1,1,1,1
-28,"Fruit & Oat Biscuits",,"Impulse",-1,"costa",1,3,3,1,1,3,1,1,1,1
-29,"Ultimate Jammy Biscuit",,"Impulse",-1,"costa",1,3,3,1,1,3,1,3,1,1
-30,"All Butter Belgian Chocolate Cookie",,"Impulse",-1,"costa",1,3,3,1,1,3,3,3,1,1
-31,"Panettoncino Classico",,"Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
-32,"Almond Biscotti",,"Impulse",-1,"costa",1,3,3,3,1,3,1,3,1,1
-33,"Chilli And Lime Mix",,"Impulse",-1,"costa",1,1,1,1,3,3,3,3,1,1
-34,"Fruit And Nut Mix",,"Impulse",-1,"costa",1,1,1,1,3,3,1,1,1,1
-35,"Instant Oat Porridge Pot",,"Impulse",-1,"costa",1,3,3,1,1,3,1,1,1,1
-36,"Mini Muffins (Choc. and Raspberry & White Choc.)",,"Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
-37,"Fruity Caramel Crispie Bites",,"Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
-38,"Chocolate Coated Coffee Beans",,"Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
-39,"Dried Mango",,"Impulse",-1,"costa",1,1,1,1,3,3,1,1,1,1
-40,"Gingerbread Biscuit (Lion and Elephant)",,"Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
-41,"(Gluten Free) Mini Pecan Pie",,"Impulse",-1,"costa",1,3,1,3,1,3,1,1,1,1
-42,"Mini GF Bakewell Tarts",,"Impulse",-1,"costa",1,3,1,3,1,3,1,1,1,1
-43,"Gingerbread Biscuit (Jumper)",,"Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
-44,"Fresh Fruit Salad",,"Impulse",-1,"costa",1,1,1,1,1,1,1,1,1,1
-45,"Smoked Salmon & Soft Cheese",,"Cold Sandwiches and Salads",-1,"costa",3,3,3,1,1,1,1,1,3,1
-46,"Roast Chicken Salad Sandwich",,"Cold Sandwiches and Salads",-1,"costa",3,3,3,3,1,1,1,1,1,1
-47,"Free Range Egg",,"Cold Sandwiches and Salads",-1,"costa",1,3,1,3,1,1,1,1,1,1
-48,"BLT",,"Cold Sandwiches and Salads",-1,"costa",3,3,3,3,1,1,1,3,3,1
-49,"Bacon, Egg and Cheese Bagel",,"Cold Sandwiches and Salads",-1,"costa",3,3,3,3,1,1,1,3,1,1
-50,"Roast Chicken Salad Sandwich",,"Cold Sandwiches and Salads",-1,"costa",3,3,3,3,1,1,1,1,1,1
-51,"Fruit Teacake (without butter)",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,3,1,3,3,3,1,1
-52,"Crumpets (without butter)",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,1,1,1,3,3,1,1
-53,"Pancakes (No Toppings)",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,3,1,1,3,3,1,1
-54,"Bacon Roll",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,3,3,1,1
-55,"Breakfast Bloomer",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,3,1,1,3,1,1,1
-56,"British Ham And Emmenthal Croissant",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,3,1,1,1,3,1,1
-57,"White Toast (Without Butter)",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,3,1,1,1,3,1,1
-58,"Brown Toast (Without Butter)",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,1,1,1,1,1,3,1,1
-59,"British Ham & Cheese Panini",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
-60,"Italian Mozzarella, Tomato & Basil Panini",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,1,1,1,1,3,1,1
-61,"Tuna Melt Panini",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,3,1,1,3,1,3,1
-62,"British Bacon & Brie Panini",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
-63,"Goats' Cheese & Sweet Chilli Chutney Panini",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",0,0,0,0,0,0,0,0,0,0
-64,"British Ham & Cheese Toastie",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
-65,"Cheddar And Slow Roasted Tomato Toastie",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,1,1,1,1,3,1,1
-66,"Emmenthal And Mushroom Toastie",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,1,1,1,1,3,1,1
-67,"British Chicken And Bacon Toastie",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
-68,"Cumberland Sausage With Red Onion Toastie",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
-69,"Wiltshire Ham & Mature Cheddar Toastie",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",0,0,0,0,0,0,0,0,0,0
-70,"BBQ Pulled Pork Toastie",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
-71,"Halloumi & Roasted Pepper Focaccia",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,3,1,1,1,3,1,1
-72,"Roast Chicken Fajita Wrap",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
-73,"Chicken & Chorizo Sourdough Panini",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,3,3,1,1
-74,"Sausage Bap",,"Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,3,1,1,1,3,1,1
-75,"Croissant (60725)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-76,"Chocolate Twist (60727)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-77,"Pain Aux Raisins (60728)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-78,"Pain Au Chocolat (61349)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-79,"Almond Croissant (61358)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-80,"Plain Croissant (60981)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-81,"Pain Au Raisin (60983)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-82,"Chocolate Twist (60984)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-83,"Pain Au Chocolat (61340)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-84,"Chocolate Twist (60079)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-85,"Almond Croissant (60080)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-86,"Butter Croissant (60081)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
-87,"Pain Aux Raisins (60542)",,"Pastries",-1,"costa",1,3,3,3,1,3,3,1,1,1
-88,"Almond Croissant (60982)",,"Pastries",-1,"costa",1,3,3,3,1,3,1,3,1,1
-89,"Apples",,"Whole Fruit",-1,"costa",1,1,1,1,1,1,1,1,1,1
-90,"Bananas",,"Whole Fruit",-1,"costa",1,1,1,1,1,1,1,1,1,1
-91,"Salt Sachets",,"Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
-92,"Black Pepper Sachets",,"Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
-93,"Nutella Portion",,"Food Extras",-1,"costa",1,3,3,1,1,3,3,1,1,1
-94,"Salted Butter Portion",,"Food Extras",-1,"costa",1,3,3,1,1,1,1,1,1,1
-95,"HP Brown Sauce Sachet",,"Food Extras",-1,"costa",1,3,1,1,1,1,1,3,1,1
-96,"Tomato Ketchup Sachet",,"Food Extras",-1,"costa",1,3,1,1,1,1,1,1,1,1
-97,"Apples",,"Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
-98,"Bananas",,"Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
-99,"Marmite Portion",,"Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
-100,"Tiptree Strawberry Jam Portion",,"Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
-101,"Tiptree Marmalade Portion",,"Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
-102,"Tiptree Honey Portion",,"Food Extras",-1,"costa",1,3,1,1,1,1,1,1,1,1
-103,"Lyles Maple Syrup Sachets",,"Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
-104,"Cortado- Made With Skimmed Milk",,"Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
-105,"Cortado- Made With Whole Milk- Solo Drink In",,"Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
-106,"Cortado- Made With Whole Milk- Solo Takeaway",,"Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
-107,"Cortado- Made With Soya Milk- Solo Drink In",,"Coffees Cortado",-1,"costa",1,1,1,1,1,3,3,1,1,1
-108,"Cortado- Made With Soya Milk- Solo Takeaway",,"Coffees Cortado",-1,"costa",1,1,1,1,1,3,3,1,1,1
-109,"Mocha Cortado - Made With Skimmed Milk - Drink In",,"Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
-110,"Mocha Cortado - Made With Skimmed Milk – Takeaway",,"Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
-111,"Mocha Cortado - Made With Whole Milk - Drink In",,"Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
-112,"Mocha Cortado - Made With Whole Milk – Takeaway",,"Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
-113,"Mocha Cortado - Made With Soya Milk - Drink In",,"Coffees Cortado",-1,"costa",1,3,3,1,1,3,3,1,1,1
-114,"Mocha Cortado - Made With Soya Milk - Takeaway",,"Coffees Cortado",-1,"costa",1,3,3,1,1,3,3,1,1,1
-115,"Mocha Italia Espresso- Solo Both",,"Mocha Italia Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
-116,"Mocha Italia Espresso- Doppio Both",,"Mocha Italia Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
-117,"Old Paradise Street Espresso- Solo Both",,"Old Paradise Street Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
-118,"Old Paradise Street Espresso- Doppio Both",,"Old Paradise Street Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
-119,"Decaffeinated Espresso- Solo Both",,"Decaffeinated Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
-120,"Decaffeinated Espresso- Doppio Both",,"Decaffeinated Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
-121,"Macchiato- Made With Skimmed Milk- Solo Both",,"Macchiato",-1,"costa",1,3,3,1,1,1,1,1,1,1
-122,"Macchiato- Made With Whole Milk- Solo Both",,"Macchiato",-1,"costa",1,3,3,1,1,1,1,1,1,1
-123,"Macchiato- Made With Soya Milk- Solo Both",,"Macchiato",-1,"costa",1,1,1,1,1,3,3,1,1,1
-124,"Babyccino With Marshmallow – Skimmed Milk",,"Babyccino With Marshmallow",-1,"costa",3,3,3,1,1,1,1,1,1,1
-125,"Babyccino With Marshmallow – Whole Milk",,"Babyccino With Marshmallow",-1,"costa",3,3,3,1,1,1,1,1,1,1
-126,"Babyccino With Marshmallow – Soya Milk",,"Babyccino With Marshmallow",-1,"costa",3,3,1,1,1,3,3,1,1,1
-127,"Chocolate Babyccino With Marshmallow - Skimmed Milk",,"Chocolate Babyccino With Marshmallow",-1,"costa",3,3,3,1,1,1,1,1,1,1
-128,"Chocolate Babyccino With Marshmallow - Whole Milk",,"Chocolate Babyccino With Marshmallow",-1,"costa",3,3,3,1,1,1,1,1,1,1
-129,"Chocolate Babyccino With Marshmallow - Soya Milk",,"Chocolate Babyccino With Marshmallow",-1,"costa",3,3,3,1,1,3,3,1,1,1
-130,"Chocolate Babyccino With Flake – Made With Skimmed Milk",,"Chocolate Babyccino With Flake",-1,"costa",1,3,3,1,1,1,1,1,1,1
-131,"Chocolate Babyccino With Flake – Made With Whole Milk",,"Chocolate Babyccino With Flake",-1,"costa",1,3,3,1,1,1,1,1,1,1
-132,"Chocolate Babyccino With Flake – Made With Soya Milk",,"Chocolate Babyccino With Flake",-1,"costa",1,3,3,1,1,3,3,1,1,1
-133,"Flat White- Made With Skimmed Milk- Primo Drink In",,"Flat White",-1,"costa",1,3,3,1,1,1,1,1,1,1
-134,"Flat White- Made With Skimmed Milk- Primo Takeaway",,"Flat White",-1,"costa",1,3,3,1,1,1,1,1,1,1
-135,"Flat White- Made With Whole Milk- Primo Drink In",,"Flat White",-1,"costa",1,3,3,1,1,1,1,1,1,1
-136,"Flat White- Made With Whole Milk-",,"Flat White",-1,"costa",1,3,3,1,1,1,1,1,1,1
-137,"Primo Takeaway Flat White- Made With Soya Milk- Primo Drink In",,"Flat White",-1,"costa",1,1,1,1,1,3,3,1,1,1
-138,"Flat White- Made With Soya Milk- Primo Takeaway",,"Flat White",-1,"costa",1,1,1,1,1,3,3,1,1,1
-139,"Cappuccino - Made With Skimmed Milk- Primo Drink In",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-140,"Cappuccino - Made With Skimmed Milk - Primo Takeaway",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-141,"Cappuccino - Made With Skimmed Milk - Medio Drink In",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-142,"Cappuccino - Made With Skimmed Milk - Medio Takeaway",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-143,"Cappuccino - Made With Skimmed Milk - Massimo Drink In",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-144,"Cappuccino - Made With Skimmed Milk - Massimo Takeaway",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-145,"Cappuccino - Made With Whole Milk – Primo Drink In",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-146,"Cappuccino - Made With Whole Milk - Primo Takeaway",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-147,"Cappuccino - Made With Whole Milk - Medio Drink In",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-148,"Cappuccino - Made With Whole Milk – Medio Takeaway",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-149,"Cappuccino - Made With Whole Milk - Massimo Drink In",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-150,"Cappuccino - Made With Whole Milk - Massimo Takeaway",,"Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
-151,"Cappuccino - Made With Soya Milk – Primo Drink In",,"Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
-152,"Cappuccino - Made With Soya Milk - Primo Takeaway",,"Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
-153,"Cappuccino - Made With Soya Milk - Medio Drink In",,"Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
-154,"Cappuccino - Made With Soya Milk - Medio Takeaway",,"Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
-155,"Cappuccino - Made With Soya Milk - Massimo Drink In",,"Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
-156,"Cappuccino - Made With Soya Milk - Massimo Takeaway",,"Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
-157,"Caffe Latte- Made With Skimmed Milk-Primo Drink In",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-158,"Caffe Latte- Made With Skimmed Milk-Primo Takeaway",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-159,"Caffe Latte- Made With Skimmed Milk-Medio Drink In",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-160,"Caffe Latte- Made With Skimmed Milk-Medio Takeaway",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-161,"Caffe Latte- Made With Skimmed Milk-Massimo Drink In",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-162,"Caffe Latte- Made With Skimmed Milk-Massimo Takeaway",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-163,"Caffe Latte- Made With Whole Milk-Primo Drink In",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-164,"Caffe Latte- Made With Whole Milk-Primo Takeaway",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-165,"Caffe Latte- Made With Whole Milk-Medio Drink In",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-166,"Caffe Latte- Made With Whole Milk-Medio Takeaway",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-167,"Caffe Latte- Made With Whole Milk-Massimo Drink In",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-168,"Caffe Latte- Made With Whole Milk-Massimo Takeaway",,"Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
-169,"Caffe Latte- Made With Soya Milk-Primo Drink In",,"Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
-170,"Caffe Latte- Made With Soya Milk-Primo Takeaway",,"Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
-171,"Caffe Latte- Made With Soya Milk-Medio Drink In",,"Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
-172,"Caffe Latte- Made With Soya Milk-Medio Takeaway",,"Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
-173,"Caffe Latte- Made With Soya Milk-Massimo Drink In",,"Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
-174,"Caffe Latte- Made With Soya Milk-Massimo Takeaway",,"Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
-175,"Americano - Made With No Milk – Primo Both",,"Americano",-1,"costa",1,1,1,1,1,1,1,1,1,1
-176,"Americano - Made With No Milk – Medio Both",,"Americano",-1,"costa",1,1,1,1,1,1,1,1,1,1
-177,"Americano - Made With No Milk – Massimo Both",,"Americano",-1,"costa",1,1,1,1,1,1,1,1,1,1
+1,"Layered Carrot Cake","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,1,3,3,3,3,1,3,3,1
+2,"Layered Carrot Cake","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
+3,"Cherry Bakewell Tart","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
+4,"Triple Chocolate Muffin","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
+5,"Lemon Muffin","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
+6,"Raspberry And White Chocolate Muffin","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
+7,"Chocolate Tiffin","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,1,1,3,3,3,1,1
+8,"Raspberry And Almond Bake","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,1,3,1,1
+9,"Granola Square","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,1,1,3,1,1,1,1
+10,"Lemon Tart","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
+11,"Caramel Shortbread","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
+12,"Chocolate Brownie","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
+13,"Chocolate Cornflake Crunch","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
+14,"Lemon Drizzle Loaf Cake","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
+15,"Coffee & Walnut Loaf Cake","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
+16,"Salted Caramel Muffin","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
+17,"Caramel Crisp","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
+18,"Blueberry Muffin","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,1,1,1
+19,"Banana Bread Loaf Cake","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,3,1,3,3,3,1,1
+20,"Malty Chocolate Crunch","Unknown","Cakes, Traybakes and Muffins",-1,"costa",1,3,3,1,1,3,3,1,1,1
+21,"Yoghurt with Raspberry & Strawberry Compote","Unknown","Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
+22,"Fruity Crumble (Gluten Dairy Free, contains GF oats)","Unknown","Impulse",-1,"costa",1,1,1,1,1,3,1,1,1,1
+23,"Mini Shortbread Bites","Unknown","Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
+24,"Fruity Flapjack","Unknown","Impulse",-1,"costa",1,3,3,1,1,3,1,1,1,1
+25,"Nutty Flapjack","Unknown","Impulse",-1,"costa",1,3,3,1,1,3,1,1,1,1
+26,"Chocolate Brownie (Gluten Free)","Unknown","Impulse",-1,"costa",1,3,3,3,1,3,3,1,1,1
+27,"Stem Ginger Biscuits","Unknown","Impulse",-1,"costa",1,3,3,1,1,3,1,1,1,1
+28,"Fruit & Oat Biscuits","Unknown","Impulse",-1,"costa",1,3,3,1,1,3,1,1,1,1
+29,"Ultimate Jammy Biscuit","Unknown","Impulse",-1,"costa",1,3,3,1,1,3,1,3,1,1
+30,"All Butter Belgian Chocolate Cookie","Unknown","Impulse",-1,"costa",1,3,3,1,1,3,3,3,1,1
+31,"Panettoncino Classico","Unknown","Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
+32,"Almond Biscotti","Unknown","Impulse",-1,"costa",1,3,3,3,1,3,1,3,1,1
+33,"Chilli And Lime Mix","Unknown","Impulse",-1,"costa",1,1,1,1,3,3,3,3,1,1
+34,"Fruit And Nut Mix","Unknown","Impulse",-1,"costa",1,1,1,1,3,3,1,1,1,1
+35,"Instant Oat Porridge Pot","Unknown","Impulse",-1,"costa",1,3,3,1,1,3,1,1,1,1
+36,"Mini Muffins (Choc. and Raspberry & White Choc.)","Unknown","Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
+37,"Fruity Caramel Crispie Bites","Unknown","Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
+38,"Chocolate Coated Coffee Beans","Unknown","Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
+39,"Dried Mango","Unknown","Impulse",-1,"costa",1,1,1,1,3,3,1,1,1,1
+40,"Gingerbread Biscuit (Lion and Elephant)","Unknown","Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
+41,"(Gluten Free) Mini Pecan Pie","Unknown","Impulse",-1,"costa",1,3,1,3,1,3,1,1,1,1
+42,"Mini GF Bakewell Tarts","Unknown","Impulse",-1,"costa",1,3,1,3,1,3,1,1,1,1
+43,"Gingerbread Biscuit (Jumper)","Unknown","Impulse",-1,"costa",1,3,3,3,1,3,3,3,1,1
+44,"Fresh Fruit Salad","Unknown","Impulse",-1,"costa",1,1,1,1,1,1,1,1,1,1
+45,"Smoked Salmon & Soft Cheese","Unknown","Cold Sandwiches and Salads",-1,"costa",3,3,3,1,1,1,1,1,3,1
+46,"Roast Chicken Salad Sandwich","Unknown","Cold Sandwiches and Salads",-1,"costa",3,3,3,3,1,1,1,1,1,1
+47,"Free Range Egg","Unknown","Cold Sandwiches and Salads",-1,"costa",1,3,1,3,1,1,1,1,1,1
+48,"BLT","Unknown","Cold Sandwiches and Salads",-1,"costa",3,3,3,3,1,1,1,3,3,1
+49,"Bacon, Egg and Cheese Bagel","Unknown","Cold Sandwiches and Salads",-1,"costa",3,3,3,3,1,1,1,3,1,1
+50,"Roast Chicken Salad Sandwich","Unknown","Cold Sandwiches and Salads",-1,"costa",3,3,3,3,1,1,1,1,1,1
+51,"Fruit Teacake (without butter)","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,3,1,3,3,3,1,1
+52,"Crumpets (without butter)","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,1,1,1,3,3,1,1
+53,"Pancakes (No Toppings)","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,3,1,1,3,3,1,1
+54,"Bacon Roll","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,3,3,1,1
+55,"Breakfast Bloomer","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,3,1,1,3,1,1,1
+56,"British Ham And Emmenthal Croissant","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,3,1,1,1,3,1,1
+57,"White Toast (Without Butter)","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,3,1,1,1,3,1,1
+58,"Brown Toast (Without Butter)","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,1,1,1,1,1,3,1,1
+59,"British Ham & Cheese Panini","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
+60,"Italian Mozzarella, Tomato & Basil Panini","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,1,1,1,1,3,1,1
+61,"Tuna Melt Panini","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,3,1,1,3,1,3,1
+62,"British Bacon & Brie Panini","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
+63,"Goats' Cheese & Sweet Chilli Chutney Panini","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",0,0,0,0,0,0,0,0,0,0
+64,"British Ham & Cheese Toastie","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
+65,"Cheddar And Slow Roasted Tomato Toastie","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,1,1,1,1,3,1,1
+66,"Emmenthal And Mushroom Toastie","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,1,1,1,1,3,1,1
+67,"British Chicken And Bacon Toastie","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
+68,"Cumberland Sausage With Red Onion Toastie","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
+69,"Wiltshire Ham & Mature Cheddar Toastie","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",0,0,0,0,0,0,0,0,0,0
+70,"BBQ Pulled Pork Toastie","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
+71,"Halloumi & Roasted Pepper Focaccia","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",1,3,3,3,1,1,1,3,1,1
+72,"Roast Chicken Fajita Wrap","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,1,3,1,1
+73,"Chicken & Chorizo Sourdough Panini","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,1,1,1,3,3,1,1
+74,"Sausage Bap","Unknown","Paninis, Toasties, Hot Wraps and Toasted Products",-1,"costa",3,3,3,3,1,1,1,3,1,1
+75,"Croissant (60725)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+76,"Chocolate Twist (60727)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+77,"Pain Aux Raisins (60728)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+78,"Pain Au Chocolat (61349)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+79,"Almond Croissant (61358)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+80,"Plain Croissant (60981)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+81,"Pain Au Raisin (60983)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+82,"Chocolate Twist (60984)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+83,"Pain Au Chocolat (61340)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+84,"Chocolate Twist (60079)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+85,"Almond Croissant (60080)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+86,"Butter Croissant (60081)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,3,1,1
+87,"Pain Aux Raisins (60542)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,3,1,1,1
+88,"Almond Croissant (60982)","Unknown","Pastries",-1,"costa",1,3,3,3,1,3,1,3,1,1
+89,"Apples","Unknown","Whole Fruit",-1,"costa",1,1,1,1,1,1,1,1,1,1
+90,"Bananas","Unknown","Whole Fruit",-1,"costa",1,1,1,1,1,1,1,1,1,1
+91,"Salt Sachets","Unknown","Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
+92,"Black Pepper Sachets","Unknown","Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
+93,"Nutella Portion","Unknown","Food Extras",-1,"costa",1,3,3,1,1,3,3,1,1,1
+94,"Salted Butter Portion","Unknown","Food Extras",-1,"costa",1,3,3,1,1,1,1,1,1,1
+95,"HP Brown Sauce Sachet","Unknown","Food Extras",-1,"costa",1,3,1,1,1,1,1,3,1,1
+96,"Tomato Ketchup Sachet","Unknown","Food Extras",-1,"costa",1,3,1,1,1,1,1,1,1,1
+97,"Apples","Unknown","Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
+98,"Bananas","Unknown","Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
+99,"Marmite Portion","Unknown","Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
+100,"Tiptree Strawberry Jam Portion","Unknown","Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
+101,"Tiptree Marmalade Portion","Unknown","Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
+102,"Tiptree Honey Portion","Unknown","Food Extras",-1,"costa",1,3,1,1,1,1,1,1,1,1
+103,"Lyles Maple Syrup Sachets","Unknown","Food Extras",-1,"costa",1,1,1,1,1,1,1,1,1,1
+104,"Cortado- Made With Skimmed Milk","Unknown","Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
+105,"Cortado- Made With Whole Milk- Solo Drink In","Unknown","Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
+106,"Cortado- Made With Whole Milk- Solo Takeaway","Unknown","Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
+107,"Cortado- Made With Soya Milk- Solo Drink In","Unknown","Coffees Cortado",-1,"costa",1,1,1,1,1,3,3,1,1,1
+108,"Cortado- Made With Soya Milk- Solo Takeaway","Unknown","Coffees Cortado",-1,"costa",1,1,1,1,1,3,3,1,1,1
+109,"Mocha Cortado - Made With Skimmed Milk - Drink In","Unknown","Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
+110,"Mocha Cortado - Made With Skimmed Milk – Takeaway","Unknown","Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
+111,"Mocha Cortado - Made With Whole Milk - Drink In","Unknown","Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
+112,"Mocha Cortado - Made With Whole Milk – Takeaway","Unknown","Coffees Cortado",-1,"costa",1,3,3,1,1,1,1,1,1,1
+113,"Mocha Cortado - Made With Soya Milk - Drink In","Unknown","Coffees Cortado",-1,"costa",1,3,3,1,1,3,3,1,1,1
+114,"Mocha Cortado - Made With Soya Milk - Takeaway","Unknown","Coffees Cortado",-1,"costa",1,3,3,1,1,3,3,1,1,1
+115,"Mocha Italia Espresso- Solo Both","Unknown","Mocha Italia Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
+116,"Mocha Italia Espresso- Doppio Both","Unknown","Mocha Italia Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
+117,"Old Paradise Street Espresso- Solo Both","Unknown","Old Paradise Street Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
+118,"Old Paradise Street Espresso- Doppio Both","Unknown","Old Paradise Street Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
+119,"Decaffeinated Espresso- Solo Both","Unknown","Decaffeinated Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
+120,"Decaffeinated Espresso- Doppio Both","Unknown","Decaffeinated Espresso",-1,"costa",1,1,1,1,1,1,1,1,1,1
+121,"Macchiato- Made With Skimmed Milk- Solo Both","Unknown","Macchiato",-1,"costa",1,3,3,1,1,1,1,1,1,1
+122,"Macchiato- Made With Whole Milk- Solo Both","Unknown","Macchiato",-1,"costa",1,3,3,1,1,1,1,1,1,1
+123,"Macchiato- Made With Soya Milk- Solo Both","Unknown","Macchiato",-1,"costa",1,1,1,1,1,3,3,1,1,1
+124,"Babyccino With Marshmallow – Skimmed Milk","Unknown","Babyccino With Marshmallow",-1,"costa",3,3,3,1,1,1,1,1,1,1
+125,"Babyccino With Marshmallow – Whole Milk","Unknown","Babyccino With Marshmallow",-1,"costa",3,3,3,1,1,1,1,1,1,1
+126,"Babyccino With Marshmallow – Soya Milk","Unknown","Babyccino With Marshmallow",-1,"costa",3,3,1,1,1,3,3,1,1,1
+127,"Chocolate Babyccino With Marshmallow - Skimmed Milk","Unknown","Chocolate Babyccino With Marshmallow",-1,"costa",3,3,3,1,1,1,1,1,1,1
+128,"Chocolate Babyccino With Marshmallow - Whole Milk","Unknown","Chocolate Babyccino With Marshmallow",-1,"costa",3,3,3,1,1,1,1,1,1,1
+129,"Chocolate Babyccino With Marshmallow - Soya Milk","Unknown","Chocolate Babyccino With Marshmallow",-1,"costa",3,3,3,1,1,3,3,1,1,1
+130,"Chocolate Babyccino With Flake – Made With Skimmed Milk","Unknown","Chocolate Babyccino With Flake",-1,"costa",1,3,3,1,1,1,1,1,1,1
+131,"Chocolate Babyccino With Flake – Made With Whole Milk","Unknown","Chocolate Babyccino With Flake",-1,"costa",1,3,3,1,1,1,1,1,1,1
+132,"Chocolate Babyccino With Flake – Made With Soya Milk","Unknown","Chocolate Babyccino With Flake",-1,"costa",1,3,3,1,1,3,3,1,1,1
+133,"Flat White- Made With Skimmed Milk- Primo Drink In","Unknown","Flat White",-1,"costa",1,3,3,1,1,1,1,1,1,1
+134,"Flat White- Made With Skimmed Milk- Primo Takeaway","Unknown","Flat White",-1,"costa",1,3,3,1,1,1,1,1,1,1
+135,"Flat White- Made With Whole Milk- Primo Drink In","Unknown","Flat White",-1,"costa",1,3,3,1,1,1,1,1,1,1
+136,"Flat White- Made With Whole Milk-","Unknown","Flat White",-1,"costa",1,3,3,1,1,1,1,1,1,1
+137,"Primo Takeaway Flat White- Made With Soya Milk- Primo Drink In","Unknown","Flat White",-1,"costa",1,1,1,1,1,3,3,1,1,1
+138,"Flat White- Made With Soya Milk- Primo Takeaway","Unknown","Flat White",-1,"costa",1,1,1,1,1,3,3,1,1,1
+139,"Cappuccino - Made With Skimmed Milk- Primo Drink In","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+140,"Cappuccino - Made With Skimmed Milk - Primo Takeaway","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+141,"Cappuccino - Made With Skimmed Milk - Medio Drink In","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+142,"Cappuccino - Made With Skimmed Milk - Medio Takeaway","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+143,"Cappuccino - Made With Skimmed Milk - Massimo Drink In","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+144,"Cappuccino - Made With Skimmed Milk - Massimo Takeaway","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+145,"Cappuccino - Made With Whole Milk – Primo Drink In","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+146,"Cappuccino - Made With Whole Milk - Primo Takeaway","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+147,"Cappuccino - Made With Whole Milk - Medio Drink In","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+148,"Cappuccino - Made With Whole Milk – Medio Takeaway","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+149,"Cappuccino - Made With Whole Milk - Massimo Drink In","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+150,"Cappuccino - Made With Whole Milk - Massimo Takeaway","Unknown","Cappuccino",-1,"costa",1,3,3,1,1,1,1,1,1,1
+151,"Cappuccino - Made With Soya Milk – Primo Drink In","Unknown","Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
+152,"Cappuccino - Made With Soya Milk - Primo Takeaway","Unknown","Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
+153,"Cappuccino - Made With Soya Milk - Medio Drink In","Unknown","Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
+154,"Cappuccino - Made With Soya Milk - Medio Takeaway","Unknown","Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
+155,"Cappuccino - Made With Soya Milk - Massimo Drink In","Unknown","Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
+156,"Cappuccino - Made With Soya Milk - Massimo Takeaway","Unknown","Cappuccino",-1,"costa",1,1,1,1,1,3,3,1,1,1
+157,"Caffe Latte- Made With Skimmed Milk-Primo Drink In","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+158,"Caffe Latte- Made With Skimmed Milk-Primo Takeaway","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+159,"Caffe Latte- Made With Skimmed Milk-Medio Drink In","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+160,"Caffe Latte- Made With Skimmed Milk-Medio Takeaway","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+161,"Caffe Latte- Made With Skimmed Milk-Massimo Drink In","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+162,"Caffe Latte- Made With Skimmed Milk-Massimo Takeaway","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+163,"Caffe Latte- Made With Whole Milk-Primo Drink In","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+164,"Caffe Latte- Made With Whole Milk-Primo Takeaway","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+165,"Caffe Latte- Made With Whole Milk-Medio Drink In","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+166,"Caffe Latte- Made With Whole Milk-Medio Takeaway","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+167,"Caffe Latte- Made With Whole Milk-Massimo Drink In","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+168,"Caffe Latte- Made With Whole Milk-Massimo Takeaway","Unknown","Caffe Latte",-1,"costa",1,3,3,1,1,1,1,1,1,1
+169,"Caffe Latte- Made With Soya Milk-Primo Drink In","Unknown","Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
+170,"Caffe Latte- Made With Soya Milk-Primo Takeaway","Unknown","Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
+171,"Caffe Latte- Made With Soya Milk-Medio Drink In","Unknown","Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
+172,"Caffe Latte- Made With Soya Milk-Medio Takeaway","Unknown","Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
+173,"Caffe Latte- Made With Soya Milk-Massimo Drink In","Unknown","Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
+174,"Caffe Latte- Made With Soya Milk-Massimo Takeaway","Unknown","Caffe Latte",-1,"costa",1,1,1,1,1,3,3,1,1,1
+175,"Americano - Made With No Milk – Primo Both","Unknown","Americano",-1,"costa",1,1,1,1,1,1,1,1,1,1
+176,"Americano - Made With No Milk – Medio Both","Unknown","Americano",-1,"costa",1,1,1,1,1,1,1,1,1,1
+177,"Americano - Made With No Milk – Massimo Both","Unknown","Americano",-1,"costa",1,1,1,1,1,1,1,1,1,1
