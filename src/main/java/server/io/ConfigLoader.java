@@ -22,6 +22,8 @@ public class ConfigLoader {
     private static String pass;
 
     private static String foodTableName;
+    private static String itemTableName;
+    private static String serviceTableName;
     private static String dbName;
     private static String tertiaryFieldNames;
     private static String binaryFieldNames;
@@ -69,6 +71,9 @@ public class ConfigLoader {
 
         dbName = prop.getProperty("dbName");
         foodTableName = prop.getProperty("foodTableName");
+        itemTableName = prop.getProperty("itemTableName");
+        serviceTableName = prop.getProperty("serviceTableName");
+        
 
         tescoUrl = prop.getProperty("tescoUrl");
         tescoHost = prop.getProperty("tescoHost");
@@ -181,5 +186,13 @@ public class ConfigLoader {
 
     public static String getKey() {
         return key;
+    }
+
+    public static String getServiceTableName() {
+        return serviceTableName;
+    }
+
+    public static String getItemTableName() {
+        return itemTableName;
     }
 }

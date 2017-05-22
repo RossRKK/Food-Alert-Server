@@ -25,7 +25,7 @@ public class Request implements Runnable {
     private String extension;
     private String path;
     
-    private String endodedData;
+    private String encodedData;
     
     private String ean;
     private String method;
@@ -44,13 +44,20 @@ public class Request implements Runnable {
             setUpIO();
 
             processURL();
+            
             switch (path) {
                 case "b":
                     //handle barcode requests to /b/
                     barcodeRequest();
                     break;
-                case "r":
+                case "s":
                     //handle restaurant requests
+                    printHeaders();
+                    out.println(serviceRequest(encodedData));
+                    break;
+                case "search":
+                    //find restaurants with a matching name
+                    search();
                     break;
                 case "branch":
                     //handle branch requests
@@ -79,10 +86,55 @@ public class Request implements Runnable {
             } catch (IOException e) {
                 System.out.println("Error closing client socket");
             }
+            try {
+                dbm.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }
     
+    /**
+     * Search the database for a service.
+     * @throws SQLException 
+     * @throws IOException 
+     * @throws ClassNotFoundException 
+     */
+    private void search() throws SQLException, ClassNotFoundException, IOException {
+        printHeaders();
+        //due to the way that we get the ean it will also be the 
+        String query = getQuery(encodedData);
+        System.out.println(query);
+        
+        ArrayList<String> results = dbm.search(query);
+        
+        String json = "{\"results\": [";
+        
+        for (int i = 0; i < results.size(); i++) {
+            json += serviceRequest(results.get(i));
+            if (i < results.size() - 1) {
+                json += ", ";
+            }
+        }
+        
+        json += "]}";
+        out.println(json);
+        System.out.println("Returned results for: " + query);
+    }
+
+    /**
+     * Respond to a request about a food service.
+     * @throws IOException 
+     * @throws SQLException 
+     * @throws ClassNotFoundException 
+     */
+    private String serviceRequest(String serviceID) throws ClassNotFoundException, SQLException, IOException {
+        String json = dbm.getJSONService(serviceID);
+        
+        return json;
+    }
+
     /**
      * setup the IO used by this request
      * @throws ClassNotFoundException
@@ -109,9 +161,9 @@ public class Request implements Runnable {
         extension = getExtension(lines);
         path = getPath(extension);
         
-        endodedData = getData();
+        encodedData = getData();
         
-        ean = getEan(endodedData);
+        ean = getEan(encodedData);
         method = getMethod(lines);
     }
     
@@ -125,28 +177,28 @@ public class Request implements Runnable {
         if (method.equalsIgnoreCase("get")) {
             printHeaders();
 
-            Record r = JSONify.decode(endodedData);
+            Record r = JSONify.decode(encodedData);
 
             if (r != null) {
                 int[] data = r.getData();
                 String name = r.getName();
 
-                boolean exists = dbm.exists(ean);
+                boolean exists = dbm.existsBarcode(ean);
                 // update the row if it already exists
                 if (exists) {
                     System.out.println("Attempting to update existing record");
                     // Record.update(ean, data, dbm);
-                    dbm.update(ean, name, data);
+                    dbm.updateBarcode(ean, name, data);
                     System.out.println("Set " + ean + " to " + data);
                 } else {
                     System.out.println("Attempting to add new record");
                     // Record.add(ean, data);
-                    dbm.add(ean, name, data);
+                    dbm.addBarcode(ean, name, data);
                     System.out.println("Added " + ean + " and set to " + data);
                 }
             } else {
                 // send the response to the client
-                out.print(dbm.getJSON(ean) + "\r\n");
+                out.print(dbm.getJSONBarcode(ean) + "\r\n");
                 System.out.println("Returned data on: " + ean);
             }
         }
@@ -167,7 +219,16 @@ public class Request implements Runnable {
      * @return The path that the request was directed at
      */
     private String getPath(String extension) {
-        return extension.substring(0, extension.lastIndexOf('/'));
+        try {
+            return extension.substring(0, extension.lastIndexOf('?'));
+        } catch (IndexOutOfBoundsException e) {
+            try {
+                return extension.substring(0, extension.lastIndexOf('/'));
+            } catch (IndexOutOfBoundsException e1) {
+                return  extension;
+            }
+        }
+        
     }
 
     /**
@@ -213,6 +274,20 @@ public class Request implements Runnable {
             return extension.substring(0, extension.indexOf('?'));
         } catch (StringIndexOutOfBoundsException e) {
             return extension;
+        }
+    }
+    
+    /**
+     * Get the search query from some endoded data.
+     * @param endcodedData The encoded data.
+     * @return The search query
+     */
+    public static String getQuery(String endcodedData) {
+        String label = "query=";
+        try {
+            return endcodedData.substring(endcodedData.indexOf(label) + label.length(), endcodedData.indexOf('&'));
+        } catch (StringIndexOutOfBoundsException e) {
+            return endcodedData.substring(endcodedData.indexOf(label) + label.length());
         }
     }
 

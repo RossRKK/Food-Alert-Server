@@ -1,0 +1,15 @@
+Repair quotes broken by new lines:
+Find: "([^",]*)[\r\n]([^",]*)"
+Replace: "$1 $2"
+
+Remove empty fields
+Find: ("")|(,,)
+Replace:
+
+Remove empty fields at the start of lines:
+Find: [\r\n],
+Replace: \n
+
+Standardize nelines:
+Find: \r
+REplace: \n
